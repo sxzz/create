@@ -11,15 +11,15 @@ async function run() {
   const templates = await loadTemplates()
   let currentTemplates = templates
   do {
-    const answer = await enquirer.prompt<{ id: string }>({
+    const answer = await enquirer.prompt<{ name: string }>({
       type: 'select',
-      name: 'id',
+      name: 'name',
       message: 'Pick a template',
-      choices: currentTemplates.map(({ id, name, color }) => {
-        return { name: id, message: getColor(color)(name) }
+      choices: currentTemplates.map(({ name, color }) => {
+        return { name, message: getColor(color)(name) }
       }),
     })
-    const template = currentTemplates.find(({ id }) => id === answer.id)!
+    const template = currentTemplates.find(({ name }) => name === answer.name)!
     if (template.url) {
       await create(template)
       break

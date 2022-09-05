@@ -12,19 +12,16 @@ npm i -g @sxzz/create
 
 The configuration file is located in `$HOME/.config/create-templates.yml`
 
-[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/template.ts#L7-L13)
+[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/template.ts#L7-L12)
 
 ```yaml
-- id: lib # An unique id
-  name: Library
+- name: Library # must be unique
   # color: '#008800' # optional
   children:
-    - id: ts
-      name: TypeScript
+    - name: TypeScript
       color: '#3178c6'
       url: 'git@github.com:sxzz/node-lib-starter.git' # remote URL or local path
-- id: webapp
-  name: Web App
+- name: Web App
   url: xxxxx
 ```
 

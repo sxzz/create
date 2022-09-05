@@ -5,7 +5,6 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { load } from 'js-yaml'
 
 export interface Template {
-  id: string
   name: string
   color?: string
   children?: Template[]
