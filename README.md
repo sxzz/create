@@ -1,7 +1,5 @@
 # @sxzz/create [![npm](https://img.shields.io/npm/v/@sxzz/create.svg)](https://npmjs.com/package/@sxzz/create)
 
-[![Unit Test](https://github.com/sxzz/create/actions/workflows/unit-test.yml/badge.svg)](https://github.com/sxzz/@sxzz/create/actions/workflows/unit-test.yml)
-
 Command-line for creating projects from templates.
 
 ## Install
