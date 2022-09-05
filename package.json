@@ -3,16 +3,19 @@
   "version": "0.0.0",
   "packageManager": "pnpm@7.9.5",
   "description": "Command-line for creating projects from templates.",
+  "type": "module",
   "license": "MIT",
   "files": [
     "dist"
   ],
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
+    "import": "./dist/index.js"
+  },
+  "bin": {
+    "create": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public"
