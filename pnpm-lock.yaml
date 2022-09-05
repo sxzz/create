@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@sxzz/eslint-config': ^2.4.2
   '@types/degit': ^2.8.3
+  '@types/js-yaml': ^4.0.5
   '@types/node': '*'
   bumpp: ^8.2.1
   chalk: ^5.0.1
@@ -12,6 +13,7 @@ specifiers:
   eslint: ^8.23.0
   eslint-define-config: ^1.7.0
   fast-glob: ^3.2.11
+  js-yaml: ^4.1.0
   prettier: ^2.7.1
   tsup: ^6.2.3
   tsx: ^3.9.0
@@ -22,10 +24,12 @@ dependencies:
   consola: 2.15.3
   degit: 2.8.4
   enquirer: 2.3.6
+  js-yaml: 4.1.0
 
 devDependencies:
   '@sxzz/eslint-config': 2.4.2_yqf6kl63nyoq5megxukfnom5rm
   '@types/degit': 2.8.3
+  '@types/js-yaml': 4.0.5
   '@types/node': 18.7.15
   bumpp: 8.2.1
   eslint: 8.23.0
@@ -256,6 +260,10 @@ packages:
     resolution: {integrity: sha512-CL7y71j2zaDmtPLD5Xq5S1Gv2dFoHl0/GBZm6s39Mj/ls28L3NzAOqf7H4H0/2TNVMgMjMVf9CAFYSjmXhi3bw==}
     dev: true
 
+  /@types/js-yaml/4.0.5:
+    resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -470,7 +478,6 @@ packages:
 
   /argparse/2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-    dev: true
 
   /array-includes/3.1.5:
     resolution: {integrity: sha512-iSDYZMMyTPkiFasVqfuAQnWAYcvO/SeBSCGKePoEthjp4LEMTe4uLc7b025o4jAZpHhihh8xPo99TNWUWWkGDQ==}
@@ -1850,7 +1857,6 @@ packages:
     hasBin: true
     dependencies:
       argparse: 2.0.1
-    dev: true
 
   /json-parse-even-better-errors/2.3.1:
     resolution: {integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==}

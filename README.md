@@ -8,6 +8,31 @@ Command-line for creating projects from templates.
 npm i -g @sxzz/create
 ```
 
+## Configuration
+
+The configuration file is located in `$HOME/.config/create-templates.yml`
+
+[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/template.ts#L7-L13)
+
+```yaml
+- id: lib # An unique id
+  name: Library
+  # color: '#008800' # optional
+  children:
+    - id: ts
+      name: TypeScript
+      color: '#3178c6'
+      url: 'git@github.com:sxzz/node-lib-starter.git' # remote URL or local path
+- id: webapp
+  name: Web App
+  url: xxxxx
+```
+
+## TODO
+
+- modify name in `package.json` and `README.md`
+- update deps
+
 ## Sponsors
 
 <p align="center">

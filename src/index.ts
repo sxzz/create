@@ -4,12 +4,12 @@ import degit from 'degit'
 import consola from 'consola'
 import chalk from 'chalk'
 import { getColor } from './utils'
-import { templates } from './template'
+import { loadTemplates } from './template'
 import type { Template } from './template'
 
-let currentTemplates = templates
-
 async function run() {
+  const templates = await loadTemplates()
+  let currentTemplates = templates
   do {
     const answer = await enquirer.prompt<{ id: string }>({
       type: 'select',

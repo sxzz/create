@@ -24,6 +24,7 @@
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.json,.md",
     "lint:fix": "pnpm run lint --fix",
     "build": "tsup && tsx scripts/postbuild.mts",
+    "dev": "tsx ./src/index.ts",
     "release": "bumpp && pnpm publish",
     "prepublishOnly": "pnpm run build"
   },
@@ -31,11 +32,13 @@
     "chalk": "^5.0.1",
     "consola": "^2.15.3",
     "degit": "^2.8.4",
-    "enquirer": "^2.3.6"
+    "enquirer": "^2.3.6",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@sxzz/eslint-config": "^2.4.2",
     "@types/degit": "^2.8.3",
+    "@types/js-yaml": "^4.0.5",
     "@types/node": "*",
     "bumpp": "^8.2.1",
     "eslint": "^8.23.0",
