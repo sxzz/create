@@ -15,7 +15,7 @@
     "import": "./dist/index.js"
   },
   "bin": {
-    "create": "./dist/index.js"
+    "create": "./bin/create.js"
   },
   "publishConfig": {
     "access": "public"
