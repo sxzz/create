@@ -8,6 +8,13 @@ Command-line for creating projects from templates.
 npm i -g @sxzz/create
 ```
 
+## Usage
+
+```bash
+cd /some/path/projects
+create
+```
+
 ## Configuration
 
 The configuration file is located in `$HOME/.config/create-templates.yml`
