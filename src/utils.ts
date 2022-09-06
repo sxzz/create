@@ -1,4 +1,7 @@
+import path from 'node:path'
 import chalk from 'chalk'
+import { execa } from 'execa'
+import { findUp } from 'find-up'
 import type { ChalkInstance } from 'chalk'
 
 export const COLORS = [
@@ -48,4 +51,15 @@ export function getColor(color?: string): ChalkInstance {
   else if (isColor(color)) return chalk[color]
   else if (color.startsWith('#')) return chalk.hex(color)
   throw new Error(`Unknown color: ${color}`)
+}
+
+export function which(command: string): Promise<number> {
+  return execa('which', [command])
+    .then((res) => res.exitCode)
+    .catch((err) => err.exitCode)
+}
+
+export async function findConfigTypePath() {
+  const pkgPath = path.dirname((await findUp('package.json'))!)
+  return path.resolve(pkgPath, 'dist/config')
 }

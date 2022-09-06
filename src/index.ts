@@ -1,29 +1,57 @@
-import { exec } from 'node:child_process'
 import enquirer from 'enquirer'
 import degit from 'degit'
 import consola from 'consola'
 import chalk from 'chalk'
+import { program } from 'commander'
+import { execa } from 'execa'
 import { getColor } from './utils'
-import { loadTemplates } from './template'
-import type { Template } from './template'
+import { editConfig, getConfig } from './config'
+import type { Config, Template } from './config'
+
+program.action(() => run().catch((err) => err && consola.error(err)))
+program
+  .command('config')
+  .action(() => config().catch((err) => consola.error(err)))
+program.parse()
+
+async function config() {
+  const { init, file } = await getConfig()
+  if (!init) editConfig(file)
+}
 
 async function run() {
-  const templates = await loadTemplates()
-  let currentTemplates = templates
+  const { config } = await getConfig()
+  let currentTemplates = config.templates
+  const templateStacks = []
   do {
-    const answer = await enquirer.prompt<{ name: string }>({
-      type: 'select',
-      name: 'name',
-      message: 'Pick a template',
-      choices: currentTemplates.map(({ name, color }) => {
-        return { name, message: getColor(color)(name) }
-      }),
-    })
-    const template = currentTemplates.find(({ name }) => name === answer.name)!
+    let templateName: string
+    let canceled = false
+    try {
+      ;({ templateName } = await enquirer.prompt<{ templateName: string }>({
+        type: 'select',
+        name: 'templateName',
+        message: 'Pick a template',
+        choices: currentTemplates.map(({ name, color }) => {
+          return { name, message: getColor(color)(name) }
+        }),
+        onCancel() {
+          canceled = true
+          return true
+        },
+      }))
+    } catch (err: any) {
+      if (canceled) {
+        currentTemplates = templateStacks.pop()!
+        if (!currentTemplates) process.exit(1)
+        continue
+      } else throw err
+    }
+    const template = currentTemplates.find(({ name }) => name === templateName)!
     if (template.url) {
-      await create(template)
+      await create(config, template)
       break
     } else if (template.children) {
+      templateStacks.push(currentTemplates)
       currentTemplates = template.children
     } else {
       throw new Error(`Bad template: ${JSON.stringify(template)}`)
@@ -32,7 +60,7 @@ async function run() {
   } while (true)
 }
 
-async function create(template: Template) {
+async function create(config: Config, template: Template) {
   const { projectName } = await enquirer.prompt<{ projectName: string }>({
     type: 'input',
     name: 'projectName',
@@ -41,9 +69,10 @@ async function create(template: Template) {
 
   const emitter = degit(template.url!)
   await emitter.clone(projectName)
-  exec(`git init ${projectName}`)
+
+  if (template.gitInit ?? config.gitInit ?? true) {
+    await execa(`git`, ['init', projectName], { stdio: 'inherit' })
+  }
 
   consola.success(chalk.green.bold('Created successfully!'))
 }
-
-run().catch((err) => consola.error(err))

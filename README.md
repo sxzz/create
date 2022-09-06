@@ -17,19 +17,26 @@ create
 
 ## Configuration
 
-The configuration file is located in `$HOME/.config/create-templates.yml`
+Most formats of configuration are supported.
+The configuration file is located in `$HOME/.config/create.config.[js,json,yml]`
 
-[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/template.ts#L7-L12)
+[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/template.ts#L12-L23)
+
+Run `create config` to modify config.
 
 ```yaml
-- name: Library # must be unique
-  # color: '#008800' # optional
-  children:
-    - name: TypeScript
-      color: '#3178c6'
-      url: 'git@github.com:sxzz/node-lib-starter.git' # remote URL or local path
-- name: Web App
-  url: xxxxx
+gitInit: true # optional, defaults to true
+
+templates:
+  - name: Library # must be unique
+    # color: '#008800' # optional
+    children:
+      - name: TypeScript
+        color: '#3178c6'
+        url: 'git@github.com:sxzz/node-lib-starter.git' # remote URL or local path
+  - name: Web App
+    url: xxxxx
+    gitInit: false # overwrite global config
 ```
 
 ## TODO
