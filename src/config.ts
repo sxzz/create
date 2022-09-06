@@ -12,10 +12,12 @@ import { findConfigTypePath, which } from './utils'
 export interface Config {
   /** @default true */
   gitInit?: boolean
+  /** @default false */
+  gitAdd?: boolean
   templates: Template[]
 }
 
-export interface Template extends Pick<Config, 'gitInit'> {
+export interface Template extends Pick<Config, 'gitInit' | 'gitAdd'> {
   name: string
   color?: string
   children?: Template[]

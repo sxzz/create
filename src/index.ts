@@ -1,3 +1,4 @@
+import path from 'node:path'
 import enquirer from 'enquirer'
 import degit from 'degit'
 import consola from 'consola'
@@ -71,8 +72,18 @@ async function create(config: Config, template: Template) {
   await emitter.clone(projectName)
 
   if (template.gitInit ?? config.gitInit ?? true) {
-    await execa(`git`, ['init', projectName], { stdio: 'inherit' })
+    await execa('git', ['init', projectName], { stdio: 'inherit' })
   }
 
-  consola.success(chalk.green.bold('Created successfully!'))
+  const projectPath = path.resolve(process.cwd(), projectName)
+
+  if (template.gitAdd || config.gitAdd) {
+    await execa('git', ['add', '.'], { stdio: 'inherit', cwd: projectPath })
+  }
+
+  consola.success(
+    `${chalk.green.bold(`Done. Now run:`)}\n\n  ${chalk.blueBright(
+      `cd ${projectName}`
+    )}\n`
+  )
 }
