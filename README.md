@@ -20,7 +20,7 @@ create
 Most formats of configuration are supported.
 The configuration file is located in `$HOME/.config/create.config.[js,json,yml]`
 
-[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/template.ts#L12-L23)
+[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/config.ts#L12)
 
 Run `create config` to modify config.
 
