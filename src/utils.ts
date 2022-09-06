@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import chalk from 'chalk'
 import { execa } from 'execa'
 import { findUp } from 'find-up'
@@ -60,6 +61,9 @@ export function which(command: string): Promise<number> {
 }
 
 export async function findConfigTypePath() {
-  const pkgPath = path.dirname((await findUp('package.json'))!)
+  const filename = fileURLToPath(import.meta.url)
+  const pkgPath = path.dirname(
+    (await findUp('package.json', { cwd: filename }))!
+  )
   return path.resolve(pkgPath, 'dist/config')
 }
