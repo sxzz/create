@@ -1,9 +1,8 @@
 import consola from 'consola'
 import { execa } from 'execa'
-import type { TemplateNormalized } from '../config'
-import type { ProjectInfo } from '../types'
+import type { Context } from '../types'
 
-export async function git(template: TemplateNormalized, project: ProjectInfo) {
+export async function git({ template, project }: Context) {
   if (template.git.init) {
     await execa('git', ['init', project.path], {
       stdout: 'ignore',

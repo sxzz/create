@@ -10,7 +10,7 @@ import { replace } from './features/replace'
 import { command } from './features/command'
 import { variable } from './features/variable'
 
-import type { ProjectInfo } from './types'
+import type { Context, ProjectInfo } from './types'
 import type { TemplateNormalized } from './config'
 
 export async function config() {
@@ -90,15 +90,16 @@ async function create({
     path: projectPath,
     variables: {},
   }
+  const ctx: Context = { template, project }
 
-  await variable(template, project)
+  await variable(ctx)
 
   const emitter = degit(url)
   await emitter.clone(projectPath)
 
-  await git(template, project)
-  await replace(template, project)
-  await command(template, project)
+  await git(ctx)
+  await replace(ctx)
+  await command(ctx)
 
   consola.success(
     `${chalk.green.bold(`Done. Now run:`)}\n\n  ${chalk.blueBright(

@@ -5,26 +5,26 @@ import chalk from 'chalk'
 import consola from 'consola'
 import replaceInFile from 'replace-in-file'
 import type { ReplaceInFileConfig } from 'replace-in-file'
-import type { TemplateNormalized } from '../config'
 import type {
   ConfigReplace,
   ConfigReplaceFromCallback,
   ConfigReplaceToCallback,
-  ProjectInfo,
+  Context,
 } from '../types'
 
-export async function replace(
-  template: TemplateNormalized,
-  project: ProjectInfo
-) {
+export async function replace(ctx: Context) {
+  const { template } = ctx
   for (const replace of template.replaces) {
-    await doReplace(replace, project).catch((err) => {
+    await doReplace(ctx, replace).catch((err) => {
       console.error(err)
     })
   }
 }
 
-async function doReplace(replace: ConfigReplace, project: ProjectInfo) {
+async function doReplace(
+  { template, project }: Context,
+  replace: ConfigReplace
+) {
   const { all = true, ignoreCase = false } = replace
 
   const buildPattern = (from: string | RegExp) => {
@@ -39,14 +39,24 @@ async function doReplace(replace: ConfigReplace, project: ProjectInfo) {
 
   const from = (
     typeof replace.from === 'function'
-      ? (file) => (replace.from as ConfigReplaceFromCallback)({ file, project })
+      ? (file) =>
+          (replace.from as ConfigReplaceFromCallback)({
+            file,
+            project,
+            template,
+          })
       : toArray(replace.from).map((from) => buildPattern(from))
   ) as ReplaceInFileConfig['from']
 
   const to: ReplaceInFileConfig['to'] =
     typeof replace.to === 'function'
       ? (match, file) =>
-          (replace.to as ConfigReplaceToCallback)({ match, file, project })
+          (replace.to as ConfigReplaceToCallback)({
+            match,
+            file,
+            project,
+            template,
+          })
       : replace.to
 
   const results = await replaceInFile.replaceInFile({

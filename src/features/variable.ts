@@ -1,11 +1,7 @@
 import enquirer from 'enquirer'
-import type { TemplateNormalized } from '../config'
-import type { ProjectInfo } from '../types'
+import type { Context } from '../types'
 
-export async function variable(
-  template: TemplateNormalized,
-  project: ProjectInfo
-) {
+export async function variable({ template, project }: Context) {
   for (const [key, variable] of Object.entries(template.variables)) {
     const def =
       typeof variable === 'function'
