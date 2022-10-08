@@ -18,14 +18,15 @@ create
 ## Configuration
 
 Most formats of configuration are supported.
-The configuration file is located in `$HOME/.config/create.config.[js,json,yml]`
+The configuration file is located in `$HOME/.config/create.config.[js,ts,json,yml,yaml]`
 
-[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/config.ts#L12)
+[TypeScript Schema](https://github.com/sxzz/create/blob/main/src/types.ts)
 
 Run `create config` to modify config.
 
 ```yaml
-gitInit: true # optional, defaults to true
+git:
+  init: true # optional, defaults to true
 
 templates:
   - name: Library # must be unique
@@ -36,13 +37,9 @@ templates:
         url: 'git@github.com:sxzz/node-lib-starter.git' # remote URL or local path
   - name: Web App
     url: xxxxx
-    gitInit: false # overwrite global config
+    git:
+      init: false # overwrite global config
 ```
-
-## TODO
-
-- modify name in `package.json` and `README.md`
-- update deps
 
 ## Sponsors
 

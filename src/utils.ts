@@ -65,5 +65,5 @@ export async function findConfigTypePath() {
   const pkgPath = path.dirname(
     (await findUp('package.json', { cwd: filename }))!
   )
-  return path.resolve(pkgPath, 'dist/config')
+  return path.resolve(pkgPath, 'dist/types')
 }

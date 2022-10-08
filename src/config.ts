@@ -7,23 +7,17 @@ import consola from 'consola'
 import chalk from 'chalk'
 import { execa } from 'execa'
 import enquirer from 'enquirer'
+import { objectPick, toArray } from '@antfu/utils'
 import { findConfigTypePath, which } from './utils'
+import type { Config, ConfigReplace, ConfigTemplate } from './types'
 
-export interface Config {
-  git?: {
-    /** @default true */
-    init?: boolean
-    /** @default false */
-    add?: boolean
-  }
-  templates: Template[]
+export type TemplateNormalized = Omit<ConfigTemplate, 'git' | 'children'> & {
+  git: NonNullable<Required<ConfigTemplate['git']>>
+  children?: TemplateNormalized[]
+  replaces: ConfigReplace[]
 }
-
-export interface Template extends Pick<Config, 'git'> {
-  name: string
-  color?: string
-  children?: Template[]
-  url?: string
+export type ConfigNormalized = {
+  templates: Array<TemplateNormalized>
 }
 
 const demoConfig: Config = {
@@ -59,7 +53,7 @@ export const getConfig = async (
 ): Promise<{
   exists: boolean
   init: boolean
-  config: Config
+  config: ConfigNormalized
   file: string
 }> => {
   const { config, sources } = await loadConfig<Config>({
@@ -79,7 +73,7 @@ export const getConfig = async (
     return {
       exists: true,
       init: false,
-      config,
+      config: normalizeConfig(config),
       file: sources[0],
     }
   }
@@ -88,7 +82,7 @@ export const getConfig = async (
     return {
       exists: false,
       init: false,
-      config,
+      config: undefined as any,
       file: '',
     }
 
@@ -160,5 +154,44 @@ export async function editConfig(filePath: string) {
     await execa('code', ['-w', filePath])
   } else if ((await which('vim')) === 0) {
     await execa('vim', [filePath], { stdio: 'inherit' })
+  }
+}
+
+export function normalizeConfig(config: Config): ConfigNormalized {
+  function normalizeReplaces(
+    replaces: ConfigTemplate['replaces']
+  ): ConfigReplace[] {
+    if (!replaces) return []
+    return Array.isArray(replaces)
+      ? replaces
+      : toArray(replaces.items).map(
+          (replace) =>
+            ({
+              ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
+              ...replace,
+            } as ConfigReplace)
+        )
+  }
+
+  function normalizeTemplate(template: ConfigTemplate): TemplateNormalized {
+    const replaces = [
+      ...normalizeReplaces(config.replaces),
+      ...normalizeReplaces(template.replaces),
+    ]
+    return {
+      ...template,
+      git: {
+        init: template.git?.init ?? config.git?.init ?? true,
+        add: template.git?.add ?? config.git?.add ?? false,
+      },
+      children: template.children?.map((t) => normalizeTemplate(t)),
+      replaces,
+    }
+  }
+
+  const templates = toArray(config.templates).map((t) => normalizeTemplate(t))
+
+  return {
+    templates,
   }
 }
