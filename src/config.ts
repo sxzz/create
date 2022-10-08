@@ -22,9 +22,10 @@ export type TemplateNormalized = MergeObject<
     variables: NonNullable<ConfigTemplate['variables']>
   }
 >
-export type ConfigNormalized = {
-  templates: Array<TemplateNormalized>
-}
+export type ConfigNormalized = MergeObject<
+  Config,
+  { templates: Array<ConfigTemplate> }
+>
 
 const demoConfig: Config = {
   git: {
@@ -79,7 +80,7 @@ export const getConfig = async (
     return {
       exists: true,
       init: false,
-      config: normalizeConfig(config),
+      config: config as ConfigNormalized,
       file: sources[0],
     }
   }
@@ -164,9 +165,18 @@ export async function editConfig(filePath: string) {
 }
 
 export function normalizeConfig(config: Config): ConfigNormalized {
-  function normalizeReplaces(
+  return {
+    ...config,
+    templates: toArray(config.templates),
+  }
+}
+
+export function normalizeTemplate(
+  templates: ConfigTemplate[]
+): TemplateNormalized {
+  const normalizeReplaces = (
     replaces: ConfigTemplate['replaces']
-  ): ConfigReplace[] {
+  ): ConfigReplace[] => {
     if (!replaces) return []
     return Array.isArray(replaces)
       ? replaces
@@ -179,30 +189,30 @@ export function normalizeConfig(config: Config): ConfigNormalized {
         )
   }
 
-  function normalizeTemplate(template: ConfigTemplate): TemplateNormalized {
-    return {
-      ...template,
-      git: {
-        name: '',
-        email: '',
-        ...(config.git || {}),
-        ...(template.git || {}),
-        init: template.git?.init ?? config.git?.init ?? true,
-        add: template.git?.add ?? config.git?.add ?? false,
-      },
-      children: template.children?.map((t) => normalizeTemplate(t)),
-      replaces: [
-        ...normalizeReplaces(config.replaces),
-        ...normalizeReplaces(template.replaces),
-      ],
-      variables: {
-        ...(config.variables || {}),
-        ...(template.variables || {}),
-      },
-    }
-  }
+  const mergeTemplate = (
+    a: ConfigTemplate,
+    b: ConfigTemplate
+  ): TemplateNormalized => ({
+    ...a,
+    ...b,
+    git: {
+      name: '',
+      email: '',
+      ...(a.git || {}),
+      ...(b.git || {}),
+      init: a.git?.init ?? b.git?.init ?? true,
+      add: a.git?.add ?? b.git?.add ?? false,
+    },
+    replaces: [
+      ...normalizeReplaces(a.replaces),
+      ...normalizeReplaces(b.replaces),
+    ],
+    variables: {
+      ...(a.variables || {}),
+      ...(b.variables || {}),
+    },
+    children: undefined,
+  })
 
-  return {
-    templates: toArray(config.templates).map((t) => normalizeTemplate(t)),
-  }
+  return templates.reduce((a, b) => mergeTemplate(a, b)) as TemplateNormalized
 }

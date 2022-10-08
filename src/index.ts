@@ -3,15 +3,16 @@ import enquirer from 'enquirer'
 import degit from 'degit'
 import consola from 'consola'
 import chalk from 'chalk'
+import { objectPick } from '@antfu/utils'
 import { getColor } from './utils'
-import { editConfig, getConfig } from './config'
+import { editConfig, getConfig, normalizeTemplate } from './config'
 import { git } from './features/git'
 import { replace } from './features/replace'
 import { command } from './features/command'
 import { variable } from './features/variable'
 
-import type { Context, ProjectInfo } from './types'
-import type { TemplateNormalized } from './config'
+import type { ConfigTemplate, Context, ProjectInfo } from './types'
+import type { ConfigNormalized, TemplateNormalized } from './config'
 
 export async function config() {
   const { init, file } = await getConfig()
@@ -19,17 +20,20 @@ export async function config() {
 }
 
 export async function run(projectPath?: string) {
-  const {
-    config: { templates },
-  } = await getConfig()
-  const template = await chooseTemplate(templates)
-
+  const { config } = await getConfig()
+  const templates = await chooseTemplate(config)
+  const template = normalizeTemplate(templates)
   await create({ projectPath, template })
 }
 
-async function chooseTemplate(templates: TemplateNormalized[]) {
-  let currentTemplates = templates
-  const templateStacks = []
+async function chooseTemplate(config: ConfigNormalized) {
+  let currentTemplate: ConfigTemplate = {
+    name: '',
+    children: config.templates,
+    ...objectPick(config, ['git', 'replaces', 'variables']),
+  }
+
+  const templateStacks: ConfigTemplate[] = [currentTemplate]
   do {
     let templateName: string
     let canceled = false
@@ -38,7 +42,7 @@ async function chooseTemplate(templates: TemplateNormalized[]) {
         type: 'select',
         name: 'templateName',
         message: 'Pick a template',
-        choices: currentTemplates.map(({ name, color }) => {
+        choices: currentTemplate.children!.map(({ name, color }) => {
           return { name, message: getColor(color)(name) }
         }),
         onCancel() {
@@ -48,17 +52,20 @@ async function chooseTemplate(templates: TemplateNormalized[]) {
       }))
     } catch (err: any) {
       if (canceled) {
-        currentTemplates = templateStacks.pop()!
-        if (!currentTemplates) process.exit(1)
+        templateStacks.pop()
+        if (templateStacks.length === 0) process.exit(1)
+        currentTemplate = templateStacks[templateStacks.length - 1]
         continue
       } else throw err
     }
-    const template = currentTemplates.find(({ name }) => name === templateName)!
+    const template = currentTemplate.children!.find(
+      ({ name }) => name === templateName
+    )!
     if (template.url) {
-      return template
+      return [...templateStacks, template]
     } else if (template.children) {
-      templateStacks.push(currentTemplates)
-      currentTemplates = template.children
+      templateStacks.push(template)
+      currentTemplate = template
     } else {
       throw new Error(`Bad template: ${JSON.stringify(template)}`)
     }
