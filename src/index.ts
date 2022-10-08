@@ -9,7 +9,11 @@ import { getColor } from './utils'
 import { editConfig, getConfig } from './config'
 import type { Config, Template } from './config'
 
-program.action(() => run().catch((err) => err && consola.error(err)))
+program
+  .argument('[projectName]', 'project name or path')
+  .action((projectName?: string) => {
+    run(projectName).catch((err) => err && consola.error(err))
+  })
 program
   .command('config')
   .action(() => config().catch((err) => consola.error(err)))
@@ -20,7 +24,7 @@ async function config() {
   if (!init) editConfig(file)
 }
 
-async function run() {
+async function run(projectName?: string) {
   const { config } = await getConfig()
   let currentTemplates = config.templates
   const templateStacks = []
@@ -49,7 +53,11 @@ async function run() {
     }
     const template = currentTemplates.find(({ name }) => name === templateName)!
     if (template.url) {
-      await create(config, template)
+      await create({
+        projectName,
+        config,
+        template,
+      })
       break
     } else if (template.children) {
       templateStacks.push(currentTemplates)
@@ -61,12 +69,22 @@ async function run() {
   } while (true)
 }
 
-async function create(config: Config, template: Template) {
-  const { projectName } = await enquirer.prompt<{ projectName: string }>({
-    type: 'input',
-    name: 'projectName',
-    message: 'Your project name?',
-  })
+async function create({
+  config,
+  template,
+  projectName,
+}: {
+  config: Config
+  template: Template
+  projectName?: string
+}) {
+  if (!projectName) {
+    ;({ projectName } = await enquirer.prompt<{ projectName: string }>({
+      type: 'input',
+      name: 'projectName',
+      message: 'Your project name?',
+    }))
+  }
 
   const emitter = degit(template.url!)
   await emitter.clone(projectName)
