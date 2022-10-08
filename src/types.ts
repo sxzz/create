@@ -48,6 +48,7 @@ export interface ConfigTemplate {
     /** @default false */
     add?: boolean
   }
+
   replaces?:
     | ({ items: Arrayable<Partial<ConfigReplace>> } & Partial<ConfigReplace>)
     | ConfigReplace[]

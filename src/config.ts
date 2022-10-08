@@ -174,10 +174,6 @@ export function normalizeConfig(config: Config): ConfigNormalized {
   }
 
   function normalizeTemplate(template: ConfigTemplate): TemplateNormalized {
-    const replaces = [
-      ...normalizeReplaces(config.replaces),
-      ...normalizeReplaces(template.replaces),
-    ]
     return {
       ...template,
       git: {
@@ -185,13 +181,14 @@ export function normalizeConfig(config: Config): ConfigNormalized {
         add: template.git?.add ?? config.git?.add ?? false,
       },
       children: template.children?.map((t) => normalizeTemplate(t)),
-      replaces,
+      replaces: [
+        ...normalizeReplaces(config.replaces),
+        ...normalizeReplaces(template.replaces),
+      ],
     }
   }
 
-  const templates = toArray(config.templates).map((t) => normalizeTemplate(t))
-
   return {
-    templates,
+    templates: toArray(config.templates).map((t) => normalizeTemplate(t)),
   }
 }

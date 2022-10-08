@@ -54,10 +54,13 @@ export function getColor(color?: string): ChalkInstance {
   throw new Error(`Unknown color: ${color}`)
 }
 
-export function which(command: string): Promise<number> {
-  return execa('which', [command])
-    .then((res) => res.exitCode)
-    .catch((err) => err.exitCode)
+export async function which(command: string): Promise<number> {
+  try {
+    const { exitCode } = await execa('which', [command])
+    return exitCode
+  } catch (err: any) {
+    return err.exitCode
+  }
 }
 
 export async function findConfigTypePath() {
