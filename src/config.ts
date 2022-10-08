@@ -11,11 +11,17 @@ import { objectPick, toArray } from '@antfu/utils'
 import { findConfigTypePath, which } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
 
-export type TemplateNormalized = Omit<ConfigTemplate, 'git' | 'children'> & {
-  git: NonNullable<Required<ConfigTemplate['git']>>
-  children?: TemplateNormalized[]
-  replaces: ConfigReplace[]
-}
+type MergeObject<O, T> = Omit<O, keyof T> & T
+
+export type TemplateNormalized = MergeObject<
+  ConfigTemplate,
+  {
+    children?: TemplateNormalized[]
+    git: NonNullable<Required<ConfigTemplate['git']>>
+    replaces: ConfigReplace[]
+    variables: NonNullable<ConfigTemplate['variables']>
+  }
+>
 export type ConfigNormalized = {
   templates: Array<TemplateNormalized>
 }
@@ -185,6 +191,10 @@ export function normalizeConfig(config: Config): ConfigNormalized {
         ...normalizeReplaces(config.replaces),
         ...normalizeReplaces(template.replaces),
       ],
+      variables: {
+        ...(config.variables || {}),
+        ...(template.variables || {}),
+      },
     }
   }
 

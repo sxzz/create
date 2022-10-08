@@ -8,6 +8,7 @@ import { editConfig, getConfig } from './config'
 import { git } from './features/git'
 import { replace } from './features/replace'
 import { command } from './features/command'
+import { variable } from './features/variable'
 
 import type { ProjectInfo } from './types'
 import type { TemplateNormalized } from './config'
@@ -87,14 +88,17 @@ async function create({
     url,
     folderName,
     path: projectPath,
+    variables: {},
   }
+
+  await variable(template, project)
 
   const emitter = degit(url)
   await emitter.clone(projectPath)
 
-  git(template, project)
-  replace(template, project)
-  command(template, project)
+  await git(template, project)
+  await replace(template, project)
+  await command(template, project)
 
   consola.success(
     `${chalk.green.bold(`Done. Now run:`)}\n\n  ${chalk.blueBright(

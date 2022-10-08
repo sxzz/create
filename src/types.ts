@@ -1,9 +1,16 @@
-import type { Arrayable } from '@antfu/utils'
+import type { TemplateNormalized } from './config'
+import type { Arrayable, Awaitable } from '@antfu/utils'
 
 export interface ProjectInfo {
   url: string
   folderName: string
   path: string
+  variables: Record<string, any>
+}
+
+export interface Context {
+  project: ProjectInfo
+  template: TemplateNormalized
 }
 
 export interface ConfigGit {
@@ -14,16 +21,18 @@ export interface ConfigGit {
 }
 
 export type ConfigReplaceFrom = Arrayable<string | RegExp>
-export type ConfigReplaceFromCallback = (options: {
-  file: string
-  project: ProjectInfo
-}) => ConfigReplaceFrom
+export type ConfigReplaceFromCallback = (
+  options: {
+    file: string
+  } & Context
+) => ConfigReplaceFrom
 export type ConfigReplaceTo = Arrayable<string>
-export type ConfigReplaceToCallback = (options: {
-  match: string
-  file: String
-  project: ProjectInfo
-}) => ConfigReplaceTo
+export type ConfigReplaceToCallback = (
+  options: {
+    match: string
+    file: String
+  } & Context
+) => ConfigReplaceTo
 
 export interface ConfigReplace {
   include?: Arrayable<string>
@@ -34,6 +43,11 @@ export interface ConfigReplace {
   all?: boolean
   /** @default false */
   ignoreCase?: boolean
+}
+
+export type ConfigVariable = { message: string; initial?: string } & {
+  type: 'input'
+  required?: boolean
 }
 
 export interface ConfigTemplate {
@@ -49,6 +63,11 @@ export interface ConfigTemplate {
     add?: boolean
   }
 
+  variables?: Record<
+    string,
+    ConfigVariable | ((ctx: Context) => Awaitable<ConfigVariable>)
+  >
+
   replaces?:
     | ({ items: Arrayable<Partial<ConfigReplace>> } & Partial<ConfigReplace>)
     | ConfigReplace[]
@@ -57,6 +76,7 @@ export interface ConfigTemplate {
   commands?: Arrayable<string>
 }
 
-export interface Config extends Pick<ConfigTemplate, 'git' | 'replaces'> {
+export interface Config
+  extends Pick<ConfigTemplate, 'git' | 'replaces' | 'variables'> {
   templates?: Arrayable<ConfigTemplate>
 }
