@@ -11,8 +11,8 @@ npm i -g @sxzz/create
 ## Usage
 
 ```bash
-cd /some/path/projects
-create
+create [path]
+# e.g: create hello-world
 ```
 
 ## Configuration
@@ -51,7 +51,7 @@ templates:
 
 ## Credits
 
-- [create-kecrily](https://github.com/kecrily/create-kecrily) 💖
+- [kecrily/create](https://github.com/kecrily/create) 💖
 
 ## License
 
