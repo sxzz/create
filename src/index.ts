@@ -71,13 +71,14 @@ async function create(config: Config, template: Template) {
   const emitter = degit(template.url!)
   await emitter.clone(projectName)
 
-  if (template.gitInit ?? config.gitInit ?? true) {
+  const gitInit = template.git?.init ?? config.git?.init ?? true
+  if (gitInit) {
     await execa('git', ['init', projectName], { stdio: 'inherit' })
   }
 
   const projectPath = path.resolve(process.cwd(), projectName)
 
-  if (template.gitAdd || config.gitAdd) {
+  if (gitInit && (template.git?.add || config.git?.add)) {
     await execa('git', ['add', '.'], { stdio: 'inherit', cwd: projectPath })
   }
 

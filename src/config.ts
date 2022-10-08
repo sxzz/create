@@ -10,14 +10,16 @@ import enquirer from 'enquirer'
 import { findConfigTypePath, which } from './utils'
 
 export interface Config {
-  /** @default true */
-  gitInit?: boolean
-  /** @default false */
-  gitAdd?: boolean
+  git?: {
+    /** @default true */
+    init?: boolean
+    /** @default false */
+    add?: boolean
+  }
   templates: Template[]
 }
 
-export interface Template extends Pick<Config, 'gitInit' | 'gitAdd'> {
+export interface Template extends Pick<Config, 'git'> {
   name: string
   color?: string
   children?: Template[]
@@ -25,7 +27,9 @@ export interface Template extends Pick<Config, 'gitInit' | 'gitAdd'> {
 }
 
 const demoConfig: Config = {
-  gitInit: true,
+  git: {
+    add: true,
+  },
   templates: [
     {
       name: 'Library',
@@ -41,7 +45,9 @@ const demoConfig: Config = {
     {
       name: 'Web App',
       url: 'git@github.com:sxzz/node-lib-starter.git',
-      gitInit: false,
+      git: {
+        init: false,
+      },
     },
   ],
 }
