@@ -183,6 +183,10 @@ export function normalizeConfig(config: Config): ConfigNormalized {
     return {
       ...template,
       git: {
+        name: '',
+        email: '',
+        ...(config.git || {}),
+        ...(template.git || {}),
         init: template.git?.init ?? config.git?.init ?? true,
         add: template.git?.add ?? config.git?.add ?? false,
       },

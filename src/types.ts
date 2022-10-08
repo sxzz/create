@@ -6,6 +6,10 @@ export interface ProjectInfo {
   folderName: string
   path: string
   variables: Record<string, any>
+  git?: {
+    name: string
+    email: string
+  }
 }
 
 export interface Context {
@@ -61,6 +65,8 @@ export interface ConfigTemplate {
     init?: boolean
     /** @default false */
     add?: boolean
+    name?: string
+    email?: string
   }
 
   variables?: Record<
