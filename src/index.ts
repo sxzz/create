@@ -85,6 +85,7 @@ async function create({
       type: 'input',
       name: 'relatePath',
       message: 'Your project name? (or path)',
+      required: true,
     }))
   }
 
