@@ -49,10 +49,18 @@ export interface ConfigReplace {
   ignoreCase?: boolean
 }
 
-export type ConfigVariable = { message: string; initial?: string } & {
-  type: 'input'
-  required?: boolean
+export interface Choice {
+  name: string
+  message?: string
+  value?: string
+  hint?: string
+  disabled?: boolean | string
 }
+
+export type ConfigVariable = { message: string; initial?: string } & (
+  | { type: 'input'; required?: boolean }
+  | { type: 'select'; choices: string[] | Choice[] }
+)
 
 export interface ConfigTemplate {
   name: string

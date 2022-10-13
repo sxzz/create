@@ -9,12 +9,8 @@ export async function variable({ template, project }: Context) {
         : variable
 
     const { value } = await enquirer.prompt<{ value: string }>({
+      ...def,
       name: 'value',
-
-      type: def.type,
-      message: def.message,
-      initial: def.initial,
-      required: def.required,
     })
 
     project.variables[key] = value
