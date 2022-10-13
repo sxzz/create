@@ -161,6 +161,10 @@ export async function editConfig(filePath: string) {
     await execa('code', ['-w', filePath])
   } else if ((await which('vim')) === 0) {
     await execa('vim', [filePath], { stdio: 'inherit' })
+  } else {
+    consola.info(
+      `VSCode and Vim are not detected, please open and edit config file manually: ${filePath}`
+    )
   }
 }
 
