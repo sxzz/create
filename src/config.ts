@@ -139,7 +139,8 @@ export const initConfig = async () => {
       break
     case 'TypeScript': {
       filePath += '.ts'
-      contents = `import type { Config } from '${await findConfigTypePath()}'
+      const configTypePath = (await findConfigTypePath()).replace(/\\/g, '/')
+      contents = `import type { Config } from '${configTypePath}'
 
 const config: Config = ${JSON.stringify(demoConfig, undefined, 2)}
 
