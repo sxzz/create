@@ -54,7 +54,10 @@ async function chooseTemplate(config: ConfigNormalized) {
     )
     if (canceled) {
       templateStacks.pop()
-      if (templateStacks.length === 0) process.exit(1)
+      if (templateStacks.length === 0) {
+        consola.error(chalk.red('Operation cancelled'))
+        process.exit(1)
+      }
       currentTemplate = templateStacks[templateStacks.length - 1]
       continue
     }
