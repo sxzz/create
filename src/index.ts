@@ -1,5 +1,5 @@
 import path from 'node:path'
-import enquirer from 'enquirer'
+import prompts from 'prompts'
 import degit from 'degit'
 import consola from 'consola'
 import chalk from 'chalk'
@@ -35,28 +35,28 @@ async function chooseTemplate(config: ConfigNormalized) {
 
   const templateStacks: ConfigTemplate[] = [currentTemplate]
   do {
-    let templateName: string
     let canceled = false
-    try {
-      ;({ templateName } = await enquirer.prompt<{ templateName: string }>({
+    const { templateName } = await prompts(
+      {
         type: 'select',
         name: 'templateName',
         message: 'Pick a template',
-        choices: currentTemplate.children!.map(({ name, color }) => {
-          return { name, message: getColor(color)(name) }
-        }),
-        onCancel() {
-          canceled = true
-          return true
-        },
-      }))
-    } catch (err: any) {
-      if (canceled) {
-        templateStacks.pop()
-        if (templateStacks.length === 0) process.exit(1)
-        currentTemplate = templateStacks[templateStacks.length - 1]
-        continue
-      } else throw err
+        choices: currentTemplate.children!.map(
+          ({ name, color }): prompts.Choice => {
+            return {
+              value: name,
+              title: getColor(color)(name),
+            }
+          }
+        ),
+      },
+      { onCancel: () => (canceled = true) }
+    )
+    if (canceled) {
+      templateStacks.pop()
+      if (templateStacks.length === 0) process.exit(1)
+      currentTemplate = templateStacks[templateStacks.length - 1]
+      continue
     }
     const template = currentTemplate.children!.find(
       ({ name }) => name === templateName
@@ -81,15 +81,16 @@ async function create({
   projectPath?: string
 }) {
   if (!relatePath) {
-    ;({ relatePath } = await enquirer.prompt<{ relatePath: string }>({
-      type: 'input',
+    ;({ relatePath } = await prompts({
+      type: 'text',
       name: 'relatePath',
       message: 'Your project name? (or path)',
-      required: true,
+      validate: (v) =>
+        v.length === 0 ? 'project name cannot be empty.' : true,
     }))
   }
 
-  const projectPath = path.resolve(process.cwd(), relatePath)
+  const projectPath = path.resolve(process.cwd(), relatePath!)
   const folderName = path.basename(projectPath)
   const url = template.url!
   const project: ProjectInfo = {

@@ -1,4 +1,4 @@
-import enquirer from 'enquirer'
+import prompts from 'prompts'
 import type { Context } from '../types'
 
 export async function variable({ template, project }: Context) {
@@ -8,10 +8,35 @@ export async function variable({ template, project }: Context) {
         ? await variable({ template, project })
         : variable
 
-    const { value } = await enquirer.prompt<{ value: string }>({
-      ...def,
-      name: 'value',
-    })
+    let options: prompts.PromptObject<string>
+    if (def.type === 'text' || def.type === 'input') {
+      options = {
+        type: 'text',
+        name: 'value',
+        validate: (value) => {
+          if (def.required && !value) return 'This field is required.'
+          return true
+        },
+      }
+    } else {
+      options = {
+        type: 'select',
+        name: 'value',
+        choices: def.choices.map((choice) => {
+          const result: prompts.Choice = {
+            title: typeof choice === 'string' ? choice : choice.name,
+          }
+          if (typeof choice !== 'string') {
+            result.value = choice.value
+            result.description = choice.message
+            result.disabled = choice.disabled
+            result.selected = choice.selected
+          }
+          return result
+        }),
+      }
+    }
+    const { value } = await prompts(options)
 
     project.variables[key] = value
   }

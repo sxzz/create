@@ -6,7 +6,7 @@ import { loadConfig } from 'unconfig'
 import consola from 'consola'
 import chalk from 'chalk'
 import { execa } from 'execa'
-import enquirer from 'enquirer'
+import prompts from 'prompts'
 import { objectPick, toArray } from '@antfu/utils'
 import { findConfigTypePath, which } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
@@ -104,7 +104,7 @@ export const getConfig = async (
 }
 
 export const initConfig = async () => {
-  const { create } = await enquirer.prompt<{ create: boolean }>({
+  const { create } = await prompts({
     type: 'confirm',
     name: 'create',
     message: 'Do you want to create a configuration file?',
@@ -114,14 +114,14 @@ export const initConfig = async () => {
     process.exit(1)
   }
 
-  const { kind } = await enquirer.prompt<{
-    kind: 'JavaScript' | 'TypeScript' | 'JSON' | 'YAML'
-  }>({
+  const { kind } = (await prompts({
     type: 'select',
     name: 'kind',
     message: 'What kind of configuration file do you want to create?',
-    choices: ['JavaScript', 'TypeScript', 'JSON', 'YAML'],
-  })
+    choices: ['JavaScript', 'TypeScript', 'JSON', 'YAML'].map((kind) => ({
+      title: kind,
+    })),
+  })) as { kind: 'JavaScript' | 'TypeScript' | 'JSON' | 'YAML' }
 
   await mkdir(path.dirname(configPath), { recursive: true }).catch(
     () => undefined

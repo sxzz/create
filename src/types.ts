@@ -50,15 +50,26 @@ export interface ConfigReplace {
 }
 
 export interface Choice {
-  name: string
-  message?: string
+  title: string
+  description?: string
+
   value?: string
-  hint?: string
-  disabled?: boolean | string
+  disabled?: boolean
+  selected?: boolean
+
+  /** @deprecated */
+  name: string
+  /** @deprecated */
+  message?: string
 }
 
 export type ConfigVariable = { message: string; initial?: string } & (
-  | { type: 'input'; required?: boolean }
+  | {
+      /** @deprecated */
+      type: 'input'
+      required?: boolean
+    }
+  | { type: 'text'; required?: boolean }
   | { type: 'select'; choices: string[] | Choice[] }
 )
 
