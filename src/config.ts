@@ -17,9 +17,10 @@ export type TemplateNormalized = MergeObject<
   ConfigTemplate,
   {
     children?: TemplateNormalized[]
-    git: NonNullable<Required<ConfigTemplate['git']>>
+    git: NonNullable<ConfigTemplate['git']>
     replaces: ConfigReplace[]
-    variables: NonNullable<ConfigTemplate['variables']>
+    variables: Array<NonNullable<ConfigTemplate['variables']>>
+    commands: Array<NonNullable<ConfigTemplate['commands']>>
   }
 >
 export type ConfigNormalized = MergeObject<
@@ -195,29 +196,30 @@ export function normalizeTemplate(
   }
 
   const mergeTemplate = (
-    a: ConfigTemplate,
+    a: TemplateNormalized,
     b: ConfigTemplate
   ): TemplateNormalized => ({
     ...a,
     ...b,
     git: {
-      name: '',
-      email: '',
-      ...(a.git || {}),
+      ...a.git,
       ...(b.git || {}),
-      init: a.git?.init ?? b.git?.init ?? true,
-      add: a.git?.add ?? b.git?.add ?? false,
     },
     replaces: [
       ...normalizeReplaces(a.replaces),
       ...normalizeReplaces(b.replaces),
     ],
-    variables: {
-      ...(a.variables || {}),
-      ...(b.variables || {}),
-    },
+    variables: [...a.variables, ...(b.variables ? [b.variables] : [])],
+    commands: [...a.commands, ...(b.commands ? [b.commands] : [])],
     children: undefined,
   })
 
-  return templates.reduce((a, b) => mergeTemplate(a, b)) as TemplateNormalized
+  const initial: TemplateNormalized = {
+    name: '',
+    git: {},
+    replaces: [],
+    variables: [],
+    commands: [],
+  }
+  return templates.reduce((a, b) => mergeTemplate(a, b), initial)
 }

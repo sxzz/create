@@ -3,7 +3,7 @@ import prompts from 'prompts'
 import { downloadTemplate } from 'giget'
 import consola from 'consola'
 import chalk from 'chalk'
-import { objectPick } from '@antfu/utils'
+import { objectKeys, objectPick } from '@antfu/utils'
 import { getColor } from './utils'
 import { editConfig, getConfig, normalizeTemplate } from './config'
 import { git } from './features/git'
@@ -30,7 +30,10 @@ async function chooseTemplate(config: ConfigNormalized) {
   let currentTemplate: ConfigTemplate = {
     name: '',
     children: config.templates,
-    ...objectPick(config, ['git', 'replaces', 'variables']),
+    ...objectPick(
+      config,
+      objectKeys(config).filter((k) => k !== 'templates')
+    ),
   }
 
   const templateStacks: ConfigTemplate[] = [currentTemplate]

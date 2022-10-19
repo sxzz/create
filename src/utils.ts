@@ -81,3 +81,10 @@ export async function resolveCallbackable<T>(
   }
   return cb
 }
+
+export async function resolveCallbackables<T>(
+  cbs: Callbackable<T>[],
+  context: Context
+): Promise<T[]> {
+  return Promise.all(cbs.map((cb) => resolveCallbackable(cb, context)))
+}

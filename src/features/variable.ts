@@ -1,10 +1,14 @@
 import prompts from 'prompts'
-import { resolveCallbackable } from '../utils'
-import type { Context } from '../types'
+import { resolveCallbackables } from '../utils'
+import type { ConfigVariable, Context } from '../types'
 
 export async function variable(context: Context) {
   const { template, project } = context
-  const variables = await resolveCallbackable(template.variables, context)
+  const variablesList = await resolveCallbackables(template.variables, context)
+  const variables: Record<string, ConfigVariable> = Object.assign(
+    {},
+    ...variablesList
+  )
   for (const [key, variable] of Object.entries(variables)) {
     let options: prompts.PromptObject<string>
     if (variable.type === 'text') {
