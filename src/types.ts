@@ -52,31 +52,27 @@ export interface ConfigReplace {
 export interface Choice {
   title: string
   description?: string
-
   value?: string
   disabled?: boolean
   selected?: boolean
-
-  /** @deprecated */
-  name: string
-  /** @deprecated */
-  message?: string
 }
 
 export type ConfigVariable = { message: string; initial?: string } & (
-  | {
-      /** @deprecated */
-      type: 'input'
-      required?: boolean
-    }
   | { type: 'text'; required?: boolean }
   | { type: 'select'; choices: string[] | Choice[] }
 )
+
+export type Callbackable<T> = Awaitable<T> | ((ctx: Context) => Awaitable<T>)
 
 export interface ConfigTemplate {
   name: string
   color?: string
   children?: ConfigTemplate[]
+  /**
+   * Format: [provider]:repo[/subpath][#ref]
+   *
+   * See also https://github.com/unjs/giget#downloadtemplatesource-options
+   */
   url?: string
 
   git?: {
@@ -88,20 +84,16 @@ export interface ConfigTemplate {
     email?: string
   }
 
-  variables?: Record<
-    string,
-    ConfigVariable | ((ctx: Context) => Awaitable<ConfigVariable>)
-  >
+  variables?: Callbackable<Record<string, ConfigVariable>>
 
   replaces?:
     | ({ items: Arrayable<Partial<ConfigReplace>> } & Partial<ConfigReplace>)
     | ConfigReplace[]
 
-  /** @beta */
-  commands?: Arrayable<string>
+  commands?: Callbackable<Arrayable<string>>
 }
 
 export interface Config
-  extends Pick<ConfigTemplate, 'git' | 'replaces' | 'variables'> {
+  extends Pick<ConfigTemplate, 'git' | 'replaces' | 'variables' | 'commands'> {
   templates?: Arrayable<ConfigTemplate>
 }

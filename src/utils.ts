@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 import chalk from 'chalk'
 import { execa } from 'execa'
 import { findUp } from 'find-up'
+import type { Callbackable, Context } from './types'
 import type { ChalkInstance } from 'chalk'
 
 export const COLORS = [
@@ -69,4 +70,14 @@ export async function findConfigTypePath() {
     (await findUp('package.json', { cwd: filename }))!
   )
   return path.resolve(pkgPath, 'dist/types')
+}
+
+export async function resolveCallbackable<T>(
+  cb: Callbackable<T>,
+  context: Context
+): Promise<T> {
+  if (typeof cb === 'function') {
+    return (cb as any)(context)
+  }
+  return cb
 }

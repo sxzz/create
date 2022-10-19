@@ -1,6 +1,6 @@
 import path from 'node:path'
 import prompts from 'prompts'
-import degit from 'degit'
+import { downloadTemplate } from 'giget'
 import consola from 'consola'
 import chalk from 'chalk'
 import { objectPick } from '@antfu/utils'
@@ -106,8 +106,10 @@ async function create({
 
   await variable(ctx)
 
-  const emitter = degit(url)
-  await emitter.clone(projectPath)
+  await downloadTemplate(url, {
+    provider: 'github',
+    dir: projectPath,
+  })
 
   await git(ctx)
   await replace(ctx)

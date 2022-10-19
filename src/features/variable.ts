@@ -1,20 +1,19 @@
 import prompts from 'prompts'
+import { resolveCallbackable } from '../utils'
 import type { Context } from '../types'
 
-export async function variable({ template, project }: Context) {
-  for (const [key, variable] of Object.entries(template.variables)) {
-    const def =
-      typeof variable === 'function'
-        ? await variable({ template, project })
-        : variable
-
+export async function variable(context: Context) {
+  const { template, project } = context
+  const variables = await resolveCallbackable(template.variables, context)
+  for (const [key, variable] of Object.entries(variables)) {
     let options: prompts.PromptObject<string>
-    if (def.type === 'text' || def.type === 'input') {
+    if (variable.type === 'text') {
       options = {
         type: 'text',
         name: 'value',
+        message: variable.message,
         validate: (value) => {
-          if (def.required && !value) return 'This field is required.'
+          if (variable.required && !value) return 'This field is required.'
           return true
         },
       }
@@ -22,18 +21,10 @@ export async function variable({ template, project }: Context) {
       options = {
         type: 'select',
         name: 'value',
-        choices: def.choices.map((choice) => {
-          const result: prompts.Choice = {
-            title: typeof choice === 'string' ? choice : choice.name,
-          }
-          if (typeof choice !== 'string') {
-            result.value = choice.value
-            result.description = choice.message
-            result.disabled = choice.disabled
-            result.selected = choice.selected
-          }
-          return result
-        }),
+        message: variable.message,
+        choices: variable.choices.map((choice) =>
+          typeof choice === 'string' ? { title: choice } : choice
+        ),
       }
     }
     const { value } = await prompts(options)
