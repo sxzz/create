@@ -188,12 +188,12 @@ export function normalizeTemplate(
     return Array.isArray(replaces)
       ? replaces
       : toArray(replaces.items).map(
-        (replace) =>
-        ({
-          ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
-          ...replace,
-        } as ConfigReplace)
-      )
+          (replace) =>
+            ({
+              ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
+              ...replace,
+            } as ConfigReplace)
+        )
   }
 
   const mergeTemplate = (
