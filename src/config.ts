@@ -121,6 +121,7 @@ export const initConfig = async () => {
     message: 'What kind of configuration file do you want to create?',
     choices: ['JavaScript', 'TypeScript', 'JSON', 'YAML'].map((kind) => ({
       title: kind,
+      value: kind,
     })),
   })) as { kind: 'JavaScript' | 'TypeScript' | 'JSON' | 'YAML' }
 
