@@ -121,6 +121,7 @@ export const initConfig = async () => {
     message: 'What kind of configuration file do you want to create?',
     choices: ['JavaScript', 'TypeScript', 'JSON', 'YAML'].map((kind) => ({
       title: kind,
+      value: kind,
     })),
   })) as { kind: 'JavaScript' | 'TypeScript' | 'JSON' | 'YAML' }
 
@@ -187,12 +188,12 @@ export function normalizeTemplate(
     return Array.isArray(replaces)
       ? replaces
       : toArray(replaces.items).map(
-          (replace) =>
-            ({
-              ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
-              ...replace,
-            } as ConfigReplace)
-        )
+        (replace) =>
+        ({
+          ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
+          ...replace,
+        } as ConfigReplace)
+      )
   }
 
   const mergeTemplate = (
