@@ -40,13 +40,13 @@ const demoConfig: Config = {
         {
           name: 'TypeScript',
           color: '#3178c6',
-          url: 'git@github.com:sxzz/node-lib-starter.git',
+          url: 'sxzz/node-lib-starter',
         },
       ],
     },
     {
       name: 'Web App',
-      url: 'git@github.com:sxzz/node-lib-starter.git',
+      url: 'sxzz/node-lib-starter',
       git: {
         init: false,
       },
