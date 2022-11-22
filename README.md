@@ -22,7 +22,7 @@ The configuration file is located in `$HOME/.config/create.config.[js,ts,json,ym
 
 [TypeScript Schema](https://github.com/sxzz/create/blob/main/src/types.ts)
 
-[url Example](https://github.com/unjs/giget#examples)  `repo[/subpath][#ref]`
+URL format: `repo[/subpath][#ref]`, See [examples](https://github.com/unjs/giget#examples).
 
 Run `create config` to modify config.
 
