@@ -22,6 +22,8 @@ The configuration file is located in `$HOME/.config/create.config.[js,ts,json,ym
 
 [TypeScript Schema](https://github.com/sxzz/create/blob/main/src/types.ts)
 
+URL format: `repo[/subpath][#ref]`. See [examples](https://github.com/unjs/giget#examples).
+
 Run `create config` to modify config.
 
 ```yaml
@@ -34,7 +36,7 @@ templates:
     children:
       - name: TypeScript
         color: '#3178c6'
-        url: 'git@github.com:sxzz/node-lib-starter.git' # remote URL or local path
+        url: 'sxzz/node-lib-starter' # remote URL or local path
   - name: Web App
     url: xxxxx
     git:
