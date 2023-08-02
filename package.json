@@ -29,34 +29,36 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@antfu/utils": "^0.6.3",
-    "chalk": "^5.1.2",
-    "commander": "^9.4.1",
-    "consola": "^2.15.3",
+    "@antfu/utils": "^0.7.5",
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0",
+    "consola": "^3.2.3",
     "escape-string-regexp": "^5.0.0",
-    "execa": "^6.1.0",
+    "execa": "^7.2.0",
     "find-up": "^6.3.0",
-    "giget": "^1.0.0",
+    "giget": "^1.1.2",
     "js-yaml": "^4.1.0",
     "prompts": "^2.4.2",
-    "replace-in-file": "^6.3.5",
-    "unconfig": "^0.3.7"
+    "replace-in-file": "^7.0.1",
+    "unconfig": "^0.3.10"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^2.4.4",
+    "@sxzz/eslint-config": "^3.3.2",
+    "@sxzz/prettier-config": "^1.0.4",
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "*",
-    "@types/prompts": "^2.4.1",
-    "bumpp": "^8.2.1",
-    "eslint": "^8.28.0",
-    "eslint-define-config": "^1.12.0",
-    "fast-glob": "^3.2.12",
-    "prettier": "^2.7.1",
-    "tsup": "^6.5.0",
-    "tsx": "^3.12.1",
-    "typescript": "^4.9.3"
+    "@types/node": "^20.4.5",
+    "@types/prompts": "^2.4.4",
+    "bumpp": "^9.1.1",
+    "eslint": "^8.46.0",
+    "eslint-define-config": "^1.22.0",
+    "fast-glob": "^3.3.1",
+    "prettier": "^3.0.0",
+    "tsup": "^7.2.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
   },
   "engines": {
-    "node": ">=14.19.0"
-  }
+    "node": ">=16.14.0"
+  },
+  "prettier": "@sxzz/prettier-config"
 }
