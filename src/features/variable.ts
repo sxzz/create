@@ -1,6 +1,6 @@
 import prompts from 'prompts'
 import { resolveCallbackables } from '../utils'
-import type { ConfigVariable, Context } from '../types'
+import { type ConfigVariable, type Context } from '../types'
 
 export async function variable(context: Context) {
   const { template, project } = context

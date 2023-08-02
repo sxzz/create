@@ -3,20 +3,19 @@ import escapeStringRegexp from 'escape-string-regexp'
 import { toArray } from '@antfu/utils'
 import chalk from 'chalk'
 import consola from 'consola'
-import replaceInFile from 'replace-in-file'
-import type { ReplaceInFileConfig } from 'replace-in-file'
-import type {
-  ConfigReplace,
-  ConfigReplaceFromCallback,
-  ConfigReplaceToCallback,
-  Context,
+import replaceInFile, { type ReplaceInFileConfig } from 'replace-in-file'
+import {
+  type ConfigReplace,
+  type ConfigReplaceFromCallback,
+  type ConfigReplaceToCallback,
+  type Context,
 } from '../types'
 
 export async function replace(ctx: Context) {
   const { template } = ctx
   for (const replace of template.replaces) {
-    await doReplace(ctx, replace).catch((err) => {
-      console.error(err)
+    await doReplace(ctx, replace).catch((error) => {
+      console.error(error)
     })
   }
 }

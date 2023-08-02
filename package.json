@@ -21,7 +21,7 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.json,.md",
+    "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
     "build": "tsup",
     "dev": "tsx ./src/cli.ts",

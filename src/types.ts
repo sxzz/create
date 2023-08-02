@@ -1,5 +1,5 @@
-import type { TemplateNormalized } from './config'
-import type { Arrayable, Awaitable } from '@antfu/utils'
+import { type Arrayable, type Awaitable } from '@antfu/utils'
+import { type TemplateNormalized } from './config'
 
 export interface ProjectInfo {
   url: string

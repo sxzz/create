@@ -5,14 +5,18 @@ import consola from 'consola'
 import chalk from 'chalk'
 import { objectKeys, objectPick } from '@antfu/utils'
 import { getColor } from './utils'
-import { editConfig, getConfig, normalizeTemplate } from './config'
+import {
+  type ConfigNormalized,
+  type TemplateNormalized,
+  editConfig,
+  getConfig,
+  normalizeTemplate,
+} from './config'
 import { git } from './features/git'
 import { replace } from './features/replace'
 import { command } from './features/command'
 import { variable } from './features/variable'
-
-import type { ConfigTemplate, Context, ProjectInfo } from './types'
-import type { ConfigNormalized, TemplateNormalized } from './config'
+import { type ConfigTemplate, type Context, type ProjectInfo } from './types'
 
 export async function config() {
   const { init, file } = await getConfig()
@@ -61,7 +65,7 @@ async function chooseTemplate(config: ConfigNormalized) {
         consola.error(chalk.red('Operation cancelled'))
         process.exit(1)
       }
-      currentTemplate = templateStacks[templateStacks.length - 1]
+      currentTemplate = templateStacks.at(-1)!
       continue
     }
     const template = currentTemplate.children!.find(

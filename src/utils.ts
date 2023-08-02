@@ -1,10 +1,9 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import chalk from 'chalk'
+import chalk, { type ChalkInstance } from 'chalk'
 import { execa } from 'execa'
 import { findUp } from 'find-up'
-import type { Callbackable, Context } from './types'
-import type { ChalkInstance } from 'chalk'
+import { type Callbackable, type Context } from './types'
 
 export const COLORS = [
   'black',
@@ -45,7 +44,7 @@ export const COLORS = [
   'bgWhiteBright',
 ] as const
 
-const isColor = (color: string): color is typeof COLORS[number] =>
+const isColor = (color: string): color is (typeof COLORS)[number] =>
   COLORS.includes(color as any)
 
 export function getColor(color?: string): ChalkInstance {
@@ -59,8 +58,8 @@ export async function which(command: string): Promise<number> {
   try {
     const { exitCode } = await execa('which', [command])
     return exitCode
-  } catch (err: any) {
-    return err.exitCode
+  } catch (error: any) {
+    return error.exitCode
   }
 }
 
@@ -72,6 +71,7 @@ export async function findConfigTypePath() {
   return path.resolve(pkgPath, 'dist/types')
 }
 
+// eslint-disable-next-line require-await
 export async function resolveCallbackable<T>(
   cb: Callbackable<T>,
   context: Context
@@ -82,7 +82,7 @@ export async function resolveCallbackable<T>(
   return cb
 }
 
-export async function resolveCallbackables<T>(
+export function resolveCallbackables<T>(
   cbs: Callbackable<T>[],
   context: Context
 ): Promise<T[]> {

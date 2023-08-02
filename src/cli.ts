@@ -5,9 +5,9 @@ import { config, run } from '.'
 program
   .argument('[projectPath]', 'project path')
   .action((projectPath?: string) => {
-    run(projectPath).catch((err) => err && consola.error(err))
+    run(projectPath).catch((error) => error && consola.error(error))
   })
 program
   .command('config')
-  .action(() => config().catch((err) => consola.error(err)))
+  .action(() => config().catch((error) => consola.error(error)))
 program.parse()

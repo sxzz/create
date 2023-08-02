@@ -36,7 +36,7 @@ templates:
     children:
       - name: TypeScript
         color: '#3178c6'
-        url: 'sxzz/node-lib-starter' # remote URL or local path
+        url: sxzz/node-lib-starter # remote URL or local path
   - name: Web App
     url: xxxxx
     git:

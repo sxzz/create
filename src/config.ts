@@ -9,7 +9,7 @@ import { execa } from 'execa'
 import prompts from 'prompts'
 import { objectPick, toArray } from '@antfu/utils'
 import { findConfigTypePath, which } from './utils'
-import type { Config, ConfigReplace, ConfigTemplate } from './types'
+import { type Config, type ConfigReplace, type ConfigTemplate } from './types'
 
 type MergeObject<O, T> = Omit<O, keyof T> & T
 
@@ -141,7 +141,7 @@ export const initConfig = async () => {
       break
     case 'TypeScript': {
       filePath += '.ts'
-      const configTypePath = (await findConfigTypePath()).replace(/\\/g, '/')
+      const configTypePath = (await findConfigTypePath()).replaceAll('\\', '/')
       contents = `import type { Config } from '${configTypePath}'
 
 const config: Config = ${JSON.stringify(demoConfig, undefined, 2)}
@@ -192,7 +192,7 @@ export function normalizeTemplate(
             ({
               ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
               ...replace,
-            } as ConfigReplace)
+            }) as ConfigReplace
         )
   }
 
