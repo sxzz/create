@@ -7,7 +7,7 @@ export async function variable(context: Context) {
   const variablesList = await resolveCallbackables(template.variables, context)
   const variables: Record<string, ConfigVariable> = Object.assign(
     {},
-    ...variablesList
+    ...variablesList,
   )
   for (const [key, variable] of Object.entries(variables)) {
     let options: prompts.PromptObject<string>
@@ -27,7 +27,7 @@ export async function variable(context: Context) {
         name: 'value',
         message: variable.message,
         choices: variable.choices.map((choice) =>
-          typeof choice === 'string' ? { title: choice } : choice
+          typeof choice === 'string' ? { title: choice } : choice,
         ),
       }
     }

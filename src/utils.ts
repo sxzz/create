@@ -66,7 +66,7 @@ export async function which(command: string): Promise<number> {
 export async function findConfigTypePath() {
   const filename = fileURLToPath(import.meta.url)
   const pkgPath = path.dirname(
-    (await findUp('package.json', { cwd: filename }))!
+    (await findUp('package.json', { cwd: filename }))!,
   )
   return path.resolve(pkgPath, 'dist/types')
 }
@@ -74,7 +74,7 @@ export async function findConfigTypePath() {
 // eslint-disable-next-line require-await
 export async function resolveCallbackable<T>(
   cb: Callbackable<T>,
-  context: Context
+  context: Context,
 ): Promise<T> {
   if (typeof cb === 'function') {
     return (cb as any)(context)
@@ -84,7 +84,7 @@ export async function resolveCallbackable<T>(
 
 export function resolveCallbackables<T>(
   cbs: Callbackable<T>[],
-  context: Context
+  context: Context,
 ): Promise<T[]> {
   return Promise.all(cbs.map((cb) => resolveCallbackable(cb, context)))
 }

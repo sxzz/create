@@ -28,14 +28,14 @@ export type ConfigReplaceFrom = Arrayable<string | RegExp>
 export type ConfigReplaceFromCallback = (
   options: {
     file: string
-  } & Context
+  } & Context,
 ) => ConfigReplaceFrom
 export type ConfigReplaceTo = Arrayable<string>
 export type ConfigReplaceToCallback = (
   options: {
     match: string
     file: String
-  } & Context
+  } & Context,
 ) => ConfigReplaceTo
 
 export interface ConfigReplace {

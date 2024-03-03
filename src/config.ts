@@ -57,7 +57,7 @@ const demoConfig: Config = {
 export const configPath = path.resolve(homedir(), '.config/create.config')
 
 export const getConfig = async (
-  init = true
+  init = true,
 ): Promise<{
   exists: boolean
   init: boolean
@@ -126,7 +126,7 @@ export const initConfig = async () => {
   })) as { kind: 'JavaScript' | 'TypeScript' | 'JSON' | 'YAML' }
 
   await mkdir(path.dirname(configPath), { recursive: true }).catch(
-    () => undefined
+    () => undefined,
   )
   let filePath = configPath
   let contents: string
@@ -166,7 +166,7 @@ export async function editConfig(filePath: string) {
     await execa('vim', [filePath], { stdio: 'inherit' })
   } else {
     consola.info(
-      `VSCode and Vim are not detected, please open and edit config file manually: ${filePath}`
+      `VSCode and Vim are not detected, please open and edit config file manually: ${filePath}`,
     )
   }
 }
@@ -179,10 +179,10 @@ export function normalizeConfig(config: Config): ConfigNormalized {
 }
 
 export function normalizeTemplate(
-  templates: ConfigTemplate[]
+  templates: ConfigTemplate[],
 ): TemplateNormalized {
   const normalizeReplaces = (
-    replaces: ConfigTemplate['replaces']
+    replaces: ConfigTemplate['replaces'],
   ): ConfigReplace[] => {
     if (!replaces) return []
     return Array.isArray(replaces)
@@ -192,13 +192,13 @@ export function normalizeTemplate(
             ({
               ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
               ...replace,
-            }) as ConfigReplace
+            }) as ConfigReplace,
         )
   }
 
   const mergeTemplate = (
     a: TemplateNormalized,
-    b: ConfigTemplate
+    b: ConfigTemplate,
   ): TemplateNormalized => ({
     ...a,
     ...b,

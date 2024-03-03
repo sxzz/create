@@ -22,7 +22,7 @@ export async function replace(ctx: Context) {
 
 async function doReplace(
   { template, project }: Context,
-  replace: ConfigReplace
+  replace: ConfigReplace,
 ) {
   const { all = true, ignoreCase = false } = replace
 
@@ -73,8 +73,8 @@ async function doReplace(
     if (!result.hasChanged) continue
     consola.info(
       `${chalk.blue.bold(
-        path.relative(project.path, result.file)
-      )} was replaced in ${chalk.green(result.numReplacements)} place(s).`
+        path.relative(project.path, result.file),
+      )} was replaced in ${chalk.green(result.numReplacements)} place(s).`,
     )
   }
 }

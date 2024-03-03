@@ -36,7 +36,7 @@ async function chooseTemplate(config: ConfigNormalized) {
     children: config.templates,
     ...objectPick(
       config,
-      objectKeys(config).filter((k) => k !== 'templates')
+      objectKeys(config).filter((k) => k !== 'templates'),
     ),
   }
 
@@ -54,10 +54,10 @@ async function chooseTemplate(config: ConfigNormalized) {
               value: name,
               title: getColor(color)(name),
             }
-          }
+          },
         ),
       },
-      { onCancel: () => (canceled = true) }
+      { onCancel: () => (canceled = true) },
     )
     if (canceled) {
       templateStacks.pop()
@@ -69,7 +69,7 @@ async function chooseTemplate(config: ConfigNormalized) {
       continue
     }
     const template = currentTemplate.children!.find(
-      ({ name }) => name === templateName
+      ({ name }) => name === templateName,
     )!
     if (template.url) {
       return [...templateStacks, template]
@@ -124,7 +124,7 @@ async function create({
 
   consola.success(
     `${chalk.green.bold(`Done. Now run:`)}\n\n  ${chalk.blueBright(
-      `cd ${relatePath}`
-    )}\n`
+      `cd ${relatePath}`,
+    )}\n`,
   )
 }

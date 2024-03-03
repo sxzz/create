@@ -38,14 +38,14 @@ export async function git({ template, project }: Context) {
     _name = template.git.name
     await run('git', ['config', 'user.name', template.git.name])
     consola.success(
-      `Set git author name: ${chalk.cyan.bold(template.git.name)}`
+      `Set git author name: ${chalk.cyan.bold(template.git.name)}`,
     )
   }
   if (template.git.email) {
     _email = template.git.email
     await run('git', ['config', 'user.email', template.git.email])
     consola.success(
-      `Set git author e-mail: ${chalk.cyan.bold(template.git.email)}`
+      `Set git author e-mail: ${chalk.cyan.bold(template.git.email)}`,
     )
   }
 
