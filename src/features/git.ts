@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import consola from 'consola'
 import { execa, execaSync } from 'execa'
-import { type Context } from '../types'
+import type { Context } from '../types'
 
 export async function git({ template, project }: Context) {
   if (!template.git.init) return

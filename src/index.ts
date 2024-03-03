@@ -1,3 +1,4 @@
+import process from 'node:process'
 import path from 'node:path'
 import prompts from 'prompts'
 import { downloadTemplate } from 'giget'
@@ -16,7 +17,7 @@ import { git } from './features/git'
 import { replace } from './features/replace'
 import { command } from './features/command'
 import { variable } from './features/variable'
-import { type ConfigTemplate, type Context, type ProjectInfo } from './types'
+import type { ConfigTemplate, Context, ProjectInfo } from './types'
 
 export async function config() {
   const { init, file } = await getConfig()

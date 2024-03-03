@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { homedir } from 'node:os'
 import path from 'node:path'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
@@ -9,7 +10,7 @@ import { execa } from 'execa'
 import prompts from 'prompts'
 import { objectPick, toArray } from '@antfu/utils'
 import { findConfigTypePath, which } from './utils'
-import { type Config, type ConfigReplace, type ConfigTemplate } from './types'
+import type { Config, ConfigReplace, ConfigTemplate } from './types'
 
 type MergeObject<O, T> = Omit<O, keyof T> & T
 
@@ -71,7 +72,7 @@ export const getConfig = async (
         files: configPath,
         extensions: ['yaml', 'yml'],
         async parser(filePath) {
-          return load(await readFile(filePath, 'utf8'))
+          return load(await readFile(filePath, 'utf8')) as Config
         },
       },
     ],
@@ -189,6 +190,7 @@ export function normalizeTemplate(
       ? replaces
       : toArray(replaces.items).map(
           (replace) =>
+            // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
             ({
               ...objectPick(replaces, ['from', 'to', 'include', 'exclude']),
               ...replace,

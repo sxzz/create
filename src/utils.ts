@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import chalk, { type ChalkInstance } from 'chalk'
 import { execa } from 'execa'
 import { findUp } from 'find-up'
-import { type Callbackable, type Context } from './types'
+import type { Callbackable, Context } from './types'
 
 export const COLORS = [
   'black',

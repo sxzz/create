@@ -1,7 +1,7 @@
 import consola from 'consola'
 import { execaCommand } from 'execa'
 import { resolveCallbackables } from '../utils'
-import { type Context } from '../types'
+import type { Context } from '../types'
 
 export async function command(context: Context) {
   const { template, project } = context

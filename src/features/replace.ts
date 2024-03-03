@@ -4,11 +4,11 @@ import { toArray } from '@antfu/utils'
 import chalk from 'chalk'
 import consola from 'consola'
 import replaceInFile, { type ReplaceInFileConfig } from 'replace-in-file'
-import {
-  type ConfigReplace,
-  type ConfigReplaceFromCallback,
-  type ConfigReplaceToCallback,
-  type Context,
+import type {
+  ConfigReplace,
+  ConfigReplaceFromCallback,
+  ConfigReplaceToCallback,
+  Context,
 } from '../types'
 
 export async function replace(ctx: Context) {
