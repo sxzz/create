@@ -4,7 +4,7 @@ import { execa, execaSync } from 'execa'
 import type { Context } from '../types'
 
 export async function git({ template, project }: Context) {
-  if (!template.git.init) return
+  if (template.git.init === false) return
 
   await execa('git', ['init', project.path], {
     stdout: 'ignore',
