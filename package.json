@@ -1,7 +1,7 @@
 {
   "name": "@sxzz/create",
   "version": "0.7.0",
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.5",
   "description": "Command-line for creating projects from templates.",
   "type": "module",
   "license": "MIT",
@@ -52,7 +52,7 @@
     "@sxzz/eslint-config": "^3.8.6",
     "@sxzz/prettier-config": "^2.0.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.11.25",
+    "@types/node": "^20.11.28",
     "@types/prompts": "^2.4.9",
     "bumpp": "^9.4.0",
     "eslint": "^8.57.0",
