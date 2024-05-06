@@ -49,18 +49,18 @@
     "unconfig": "^0.3.13"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^3.9.1",
+    "@sxzz/eslint-config": "^3.11.0",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.8",
     "@types/prompts": "^2.4.9",
-    "bumpp": "^9.4.0",
-    "eslint": "^9.1.1",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.2.0",
     "eslint-define-config": "^2.1.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
-    "tsx": "^4.7.3",
+    "tsx": "^4.9.3",
     "typescript": "^5.4.5"
   },
   "engines": {
