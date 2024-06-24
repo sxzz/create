@@ -18,7 +18,7 @@ create [path]
 ## Configuration
 
 Most formats of configuration are supported.
-The configuration file is located in `$HOME/.config/create.config.[js,ts,json,yml,yaml]`
+The configuration file is located in `$HOME/.config/create.config.[js,mjs,ts,mts,json,yml,yaml]`
 
 [TypeScript Schema](https://github.com/sxzz/create/blob/main/src/types.ts)
 
