@@ -57,7 +57,7 @@ export function getColor(color?: string): ChalkInstance {
 export async function which(command: string): Promise<number> {
   try {
     const { exitCode } = await execa('which', [command])
-    return exitCode
+    return exitCode!
   } catch (error: any) {
     return error.exitCode
   }

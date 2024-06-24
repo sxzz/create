@@ -3,7 +3,7 @@ import escapeStringRegexp from 'escape-string-regexp'
 import { toArray } from '@antfu/utils'
 import chalk from 'chalk'
 import consola from 'consola'
-import replaceInFile, { type ReplaceInFileConfig } from 'replace-in-file'
+import { type ReplaceInFileConfig, replaceInFile } from 'replace-in-file'
 import type {
   ConfigReplace,
   ConfigReplaceFromCallback,
