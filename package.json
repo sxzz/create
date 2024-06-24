@@ -45,7 +45,7 @@
     "giget": "^1.2.3",
     "js-yaml": "^4.1.0",
     "prompts": "^2.4.2",
-    "replace-in-file": "^7.2.0",
+    "replace-in-file": "^8.0.0",
     "unconfig": "^0.4.4"
   },
   "devDependencies": {
