@@ -58,7 +58,7 @@ async function doReplace(
           })
       : replace.to
 
-  const results = await replaceInFile.replaceInFile({
+  const results = await replaceInFile({
     files: replace.include ?? '**/*',
     ignore: replace.exclude,
     from,
