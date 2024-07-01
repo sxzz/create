@@ -35,7 +35,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@antfu/utils": "^0.7.8",
+    "@antfu/utils": "^0.7.10",
     "chalk": "^5.3.0",
     "commander": "^12.1.0",
     "consola": "^3.2.3",
@@ -45,22 +45,22 @@
     "giget": "^1.2.3",
     "js-yaml": "^4.1.0",
     "prompts": "^2.4.2",
-    "replace-in-file": "^8.0.0",
-    "unconfig": "^0.4.4"
+    "replace-in-file": "^8.0.1",
+    "unconfig": "^0.4.5"
   },
   "devDependencies": {
     "@sxzz/eslint-config": "^3.13.0",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.14.8",
+    "@types/node": "^20.14.9",
     "@types/prompts": "^2.4.9",
     "bumpp": "^9.4.1",
-    "eslint": "^9.5.0",
+    "eslint": "^9.6.0",
     "eslint-define-config": "^2.1.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.2",
     "tsup": "^8.1.0",
-    "tsx": "^4.15.7",
+    "tsx": "^4.16.0",
     "typescript": "^5.5.2"
   },
   "engines": {
