@@ -46,21 +46,21 @@
     "js-yaml": "^4.1.0",
     "prompts": "^2.4.2",
     "replace-in-file": "^8.1.0",
-    "unconfig": "^0.4.5"
+    "unconfig": "^0.5.5"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^3.16.0",
+    "@sxzz/eslint-config": "^3.16.2",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.14.13",
+    "@types/node": "^20.14.14",
     "@types/prompts": "^2.4.9",
-    "bumpp": "^9.4.1",
+    "bumpp": "^9.4.2",
     "eslint": "^9.8.0",
     "eslint-define-config": "^2.1.0",
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
-    "tsup": "^8.2.3",
-    "tsx": "^4.16.2",
+    "tsup": "^8.2.4",
+    "tsx": "^4.16.5",
     "typescript": "^5.5.4"
   },
   "engines": {
