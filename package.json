@@ -52,7 +52,7 @@
     "@sxzz/eslint-config": "^3.17.3",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.16.1",
+    "@types/node": "^22.4.2",
     "@types/prompts": "^2.4.9",
     "bumpp": "^9.5.1",
     "eslint": "^9.9.0",
