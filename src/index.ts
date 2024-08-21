@@ -1,22 +1,22 @@
-import process from 'node:process'
 import path from 'node:path'
-import prompts from 'prompts'
-import { downloadTemplate } from 'giget'
-import consola from 'consola'
-import chalk from 'chalk'
+import process from 'node:process'
 import { objectKeys, objectPick } from '@antfu/utils'
-import { getColor } from './utils'
+import chalk from 'chalk'
+import consola from 'consola'
+import { downloadTemplate } from 'giget'
+import prompts from 'prompts'
 import {
-  type ConfigNormalized,
-  type TemplateNormalized,
   editConfig,
   getConfig,
   normalizeTemplate,
+  type ConfigNormalized,
+  type TemplateNormalized,
 } from './config'
+import { command } from './features/command'
 import { git } from './features/git'
 import { replace } from './features/replace'
-import { command } from './features/command'
 import { variable } from './features/variable'
+import { getColor } from './utils'
 import type { ConfigTemplate, Context, ProjectInfo } from './types'
 
 export async function config() {

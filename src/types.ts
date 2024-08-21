@@ -1,5 +1,5 @@
-import type { Arrayable, Awaitable } from '@antfu/utils'
 import type { TemplateNormalized } from './config'
+import type { Arrayable, Awaitable } from '@antfu/utils'
 
 export interface ProjectInfo {
   url: string
@@ -34,7 +34,7 @@ export type ConfigReplaceTo = Arrayable<string>
 export type ConfigReplaceToCallback = (
   options: {
     match: string
-    file: String
+    file: string
   } & Context,
 ) => ConfigReplaceTo
 
