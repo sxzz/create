@@ -114,6 +114,7 @@ async function create({
 
   await variable(ctx)
 
+  consola.info(`Creating project in ${chalk.blueBright(projectPath)}...`)
   await downloadTemplate(url, {
     provider: 'github',
     dir: projectPath,
