@@ -1,5 +1,5 @@
 import prompts from 'prompts'
-import { resolveCallbackables } from '../utils'
+import { CliError, resolveCallbackables } from '../utils'
 import type { ConfigVariable, Context } from '../types'
 
 export async function variable(context: Context) {
@@ -9,6 +9,8 @@ export async function variable(context: Context) {
     {},
     ...variablesList,
   )
+
+  let canceled = false
   for (const [key, variable] of Object.entries(variables)) {
     let options: prompts.PromptObject<string>
     if (variable.type === 'text') {
@@ -16,6 +18,7 @@ export async function variable(context: Context) {
         type: 'text',
         name: 'value',
         message: variable.message,
+        initial: variable.initial,
         validate: (value) => {
           if (variable.required && !value) return 'This field is required.'
           return true
@@ -26,12 +29,19 @@ export async function variable(context: Context) {
         type: 'select',
         name: 'value',
         message: variable.message,
+        initial: variable.initial,
         choices: variable.choices.map((choice) =>
           typeof choice === 'string' ? { title: choice } : choice,
         ),
       }
     }
-    const { value } = await prompts(options)
+    const { value } = await prompts(options, {
+      onCancel: () => (canceled = true),
+    })
+    if (canceled)
+      throw new CliError(
+        'Variable input canceled. Please run the command again.',
+      )
 
     project.variables[key] = value
   }

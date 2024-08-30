@@ -9,7 +9,7 @@ import { execa } from 'execa'
 import { dump, load } from 'js-yaml'
 import prompts from 'prompts'
 import { loadConfig } from 'unconfig'
-import { cmdExists, findConfigTypePath } from './utils'
+import { CliError, cmdExists, findConfigTypePath } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
 
 type MergeObject<O, T> = Omit<O, keyof T> & T
@@ -101,7 +101,7 @@ export const getConfig = async (
   await editConfig(filePath)
 
   const newConfig = await getConfig(false)
-  if (!newConfig) throw new Error('No configuration file found.')
+  if (!newConfig) throw new CliError('No configuration file found.')
   return { ...newConfig, init: true }
 }
 

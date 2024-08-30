@@ -93,3 +93,10 @@ export function resolveCallbackables<T>(
 ): Promise<T[]> {
   return Promise.all(cbs.map((cb) => resolveCallbackable(cb, context)))
 }
+
+export class CliError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'CliError'
+  }
+}

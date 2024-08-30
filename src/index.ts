@@ -16,7 +16,7 @@ import { command } from './features/command'
 import { git } from './features/git'
 import { replace } from './features/replace'
 import { variable } from './features/variable'
-import { getColor } from './utils'
+import { CliError, getColor } from './utils'
 import type { ConfigTemplate, Context, ProjectInfo } from './types'
 
 export async function config() {
@@ -25,10 +25,16 @@ export async function config() {
 }
 
 export async function run(projectPath?: string) {
-  const { config } = await getConfig()
-  const templates = await chooseTemplate(config)
-  const template = normalizeTemplate(templates)
-  await create({ projectPath, template })
+  try {
+    const { config } = await getConfig()
+    const templates = await chooseTemplate(config)
+    const template = normalizeTemplate(templates)
+    await create({ projectPath, template })
+  } catch (error) {
+    if (error instanceof CliError) {
+      consola.error(error.message)
+    } else consola.error(error)
+  }
 }
 
 async function chooseTemplate(config: ConfigNormalized) {
@@ -63,8 +69,7 @@ async function chooseTemplate(config: ConfigNormalized) {
     if (canceled) {
       templateStacks.pop()
       if (templateStacks.length === 0) {
-        consola.error(chalk.red('Operation cancelled'))
-        process.exit(1)
+        throw new CliError('No template selected.')
       }
       currentTemplate = templateStacks.at(-1)!
       continue
@@ -95,11 +100,11 @@ async function create({
     ;({ relatePath } = await prompts({
       type: 'text',
       name: 'relatePath',
-      message: 'Your project name? (or path)',
-      validate: (v) =>
-        v.length === 0 ? 'project name cannot be empty.' : true,
+      message: 'Folder name of the project',
+      validate: (v) => (v.length === 0 ? 'folder name cannot be empty.' : true),
     }))
   }
+  if (!relatePath) throw new CliError('No folder name provided.')
 
   const projectPath = path.resolve(process.cwd(), relatePath!)
   const folderName = path.basename(projectPath)
