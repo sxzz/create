@@ -63,6 +63,11 @@ export async function which(command: string): Promise<number> {
   }
 }
 
+export async function cmdExists(command: string): Promise<boolean> {
+  const code = await which(command)
+  return code === 0
+}
+
 export async function findConfigTypePath() {
   const filename = fileURLToPath(import.meta.url)
   const pkgPath = path.dirname(

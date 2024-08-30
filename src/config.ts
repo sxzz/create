@@ -9,7 +9,7 @@ import { execa } from 'execa'
 import { dump, load } from 'js-yaml'
 import prompts from 'prompts'
 import { loadConfig } from 'unconfig'
-import { findConfigTypePath, which } from './utils'
+import { cmdExists, findConfigTypePath } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
 
 type MergeObject<O, T> = Omit<O, keyof T> & T
@@ -161,9 +161,11 @@ export default config
 }
 
 export async function editConfig(filePath: string) {
-  if ((await which('code')) === 0) {
+  if (await cmdExists('code')) {
     await execa('code', ['-w', filePath])
-  } else if ((await which('vim')) === 0) {
+  } else if (await cmdExists('zed')) {
+    await execa('zed', [filePath], { stdio: 'inherit' })
+  } else if (await cmdExists('vim')) {
     await execa('vim', [filePath], { stdio: 'inherit' })
   } else {
     consola.info(

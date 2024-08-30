@@ -13,6 +13,10 @@ npm i -g @sxzz/create
 ```bash
 create [path]
 # e.g: create hello-world
+
+# edit the configuration via VSCode, Vim, or Zed.
+create config
+
 ```
 
 ## Configuration
