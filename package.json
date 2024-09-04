@@ -59,7 +59,8 @@
     "prettier": "^3.3.3",
     "tsup": "^8.2.4",
     "tsx": "^4.19.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "unplugin-unused": "^0.1.4"
   },
   "engines": {
     "node": ">=18.0.0"
