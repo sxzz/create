@@ -27,14 +27,15 @@ create [path]
 create edit
 ```
 
-### Use online configuration
+### Use remote configuration
 
 ```bash
 create from <url>
 # e.g: create from https://raw.githubusercontent.com/sxzz/create/main/example.yaml
 
 # or for short
-create from sxzz/create/main/example.yaml
+create from <owner>/<repo>/<branch>/<path>
+# e.g: create from sxzz/create/main/example.yaml
 ```
 
 ## Configuration
