@@ -6,6 +6,9 @@ Command-line for creating projects from templates.
 
 ```bash
 npm i -g @sxzz/create
+
+# Or use [p]npx
+npx @sxzz/create
 ```
 
 ## Usage
