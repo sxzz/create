@@ -1,0 +1,9 @@
+git:
+  init: true
+
+templates:
+  - name: Library
+    children:
+      - name: TypeScript
+        color: '#3178c6'
+        url: sxzz/node-lib-starter

@@ -82,7 +82,7 @@ export const getConfig = async (
     return {
       exists: true,
       init: false,
-      config: config as ConfigNormalized,
+      config: normalizeConfig(config),
       file: sources[0],
     }
   }

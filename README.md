@@ -10,13 +10,28 @@ npm i -g @sxzz/create
 
 ## Usage
 
+### Create a project
+
 ```bash
 create [path]
 # e.g: create hello-world
+```
 
+### Edit configuration
+
+```bash
 # edit the configuration via VSCode, Vim, or Zed.
-create config
+create edit
+```
 
+### Use online configuration
+
+```bash
+create from <url>
+# e.g: create from https://raw.githubusercontent.com/sxzz/create/main/example.yaml
+
+# or for short
+create from sxzz/create/main/example.yaml
 ```
 
 ## Configuration

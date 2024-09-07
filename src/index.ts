@@ -27,10 +27,11 @@ export async function edit() {
   }
 }
 
-export async function run(projectPath?: string) {
+export async function run(projectPath?: string, config?: ConfigNormalized) {
   try {
+    config ||= (await getConfig()).config
+
     intro(chalk.bgBlueBright(' @sxzz/create '))
-    const { config } = await getConfig()
     const templates = await chooseTemplate(config)
     const template = normalizeTemplate(templates)
     await create({ projectPath, template })
