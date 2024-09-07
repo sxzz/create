@@ -9,7 +9,7 @@ const cli = cac('@sxzz/create')
 cli
   .command('[projectPath]', 'create a project')
   .action((projectPath?: string) => {
-    run(projectPath).catch((error) => error && consola.error(error))
+    run({ projectPath }).catch((error) => error && consola.error(error))
   })
 cli
   .command('from <template>', 'create a project from a template')

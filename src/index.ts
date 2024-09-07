@@ -27,7 +27,13 @@ export async function edit() {
   }
 }
 
-export async function run(projectPath?: string, config?: ConfigNormalized) {
+export async function run({
+  projectPath,
+  config,
+}: {
+  projectPath?: string
+  config?: ConfigNormalized
+} = {}) {
   try {
     config ||= (await getConfig()).config
 

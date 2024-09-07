@@ -57,14 +57,14 @@ const demoConfig: Config = {
 
 export const configPath = path.resolve(homedir(), '.config/create.config')
 
-export const getConfig = async (
+export async function getConfig({
   init = true,
-): Promise<{
+}: { init?: boolean } = {}): Promise<{
   exists: boolean
   init: boolean
   config: ConfigNormalized
   file: string
-}> => {
+}> {
   const { config, sources } = await loadConfig<Config>({
     sources: [
       { files: configPath },
@@ -100,7 +100,7 @@ export const getConfig = async (
   const filePath = await initConfig()
   await editConfig(filePath)
 
-  const newConfig = await getConfig(false)
+  const newConfig = await getConfig({ init: false })
   if (!newConfig) throw new CliError('No configuration file found.')
   return { ...newConfig, init: true }
 }

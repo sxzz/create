@@ -35,5 +35,5 @@ export async function fromTemplate(template: string) {
       throw new CliError('Cannot resolve config file.')
   }
 
-  run(undefined, normalizeConfig(config))
+  run({ config: normalizeConfig(config) })
 }
