@@ -1,10 +1,10 @@
 import path from 'node:path'
 import process from 'node:process'
 import { objectKeys, objectPick } from '@antfu/utils'
+import { intro, isCancel, select, text } from '@clack/prompts'
 import chalk from 'chalk'
 import consola from 'consola'
 import { downloadTemplate } from 'giget'
-import prompts from 'prompts'
 import {
   editConfig,
   getConfig,
@@ -19,13 +19,17 @@ import { variable } from './features/variable'
 import { CliError, getColor } from './utils'
 import type { ConfigTemplate, Context, ProjectInfo } from './types'
 
-export async function config() {
+export async function edit() {
   const { init, file } = await getConfig()
-  if (!init) editConfig(file)
+  if (!init) {
+    consola.info(`Open config file in ${chalk.blueBright(file)}`)
+    editConfig(file)
+  }
 }
 
 export async function run(projectPath?: string) {
   try {
+    intro(chalk.bgBlueBright(' @sxzz/create '))
     const { config } = await getConfig()
     const templates = await chooseTemplate(config)
     const template = normalizeTemplate(templates)
@@ -49,24 +53,16 @@ async function chooseTemplate(config: ConfigNormalized) {
 
   const templateStacks: ConfigTemplate[] = [currentTemplate]
   do {
-    let canceled = false
-    const { templateName } = await prompts(
-      {
-        type: 'select',
-        name: 'templateName',
-        message: 'Pick a template',
-        choices: currentTemplate.children!.map(
-          ({ name, color }): prompts.Choice => {
-            return {
-              value: name,
-              title: getColor(color)(name),
-            }
-          },
-        ),
-      },
-      { onCancel: () => (canceled = true) },
-    )
-    if (canceled) {
+    const templateName = await select({
+      message: 'Pick a template',
+      options: currentTemplate.children!.map(({ name, color }) => {
+        return {
+          value: name,
+          label: getColor(color)(name),
+        }
+      }),
+    })
+    if (isCancel(templateName)) {
       templateStacks.pop()
       if (templateStacks.length === 0) {
         throw new CliError('No template selected.')
@@ -91,22 +87,23 @@ async function chooseTemplate(config: ConfigNormalized) {
 
 async function create({
   template,
-  projectPath: relatePath,
+  projectPath: _relatePath,
 }: {
   template: TemplateNormalized
   projectPath?: string
 }) {
+  let relatePath: string | symbol | undefined = _relatePath
   if (!relatePath) {
-    ;({ relatePath } = await prompts({
-      type: 'text',
-      name: 'relatePath',
+    relatePath = await text({
       message: 'Folder name of the project',
-      validate: (v) => (v.length === 0 ? 'folder name cannot be empty.' : true),
-    }))
+      validate: (v) =>
+        v.length === 0 ? 'folder name cannot be empty.' : undefined,
+    })
   }
-  if (!relatePath) throw new CliError('No folder name provided.')
+  if (!relatePath || isCancel(relatePath))
+    throw new CliError('No folder name provided.')
 
-  const projectPath = path.resolve(process.cwd(), relatePath!)
+  const projectPath = path.resolve(process.cwd(), relatePath)
   const folderName = path.basename(projectPath)
   const url = template.url!
   const project: ProjectInfo = {
@@ -131,7 +128,7 @@ async function create({
 
   consola.success(
     `${chalk.green.bold(`Done. Now run:`)}\n\n  ${chalk.blueBright(
-      `cd ${relatePath}`,
+      `cd ${_relatePath}`,
     )}\n`,
   )
 }

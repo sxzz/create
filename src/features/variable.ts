@@ -1,6 +1,6 @@
-import prompts from 'prompts'
+import { isCancel, select, text } from '@clack/prompts'
 import { CliError, resolveCallbackables } from '../utils'
-import type { ConfigVariable, Context } from '../types'
+import type { Choice, ConfigVariable, Context } from '../types'
 
 export async function variable(context: Context) {
   const { template, project } = context
@@ -10,35 +10,31 @@ export async function variable(context: Context) {
     ...variablesList,
   )
 
-  let canceled = false
   for (const [key, variable] of Object.entries(variables)) {
-    let options: prompts.PromptObject<string>
+    let value: string | symbol | undefined
+
     if (variable.type === 'text') {
-      options = {
-        type: 'text',
-        name: 'value',
+      value = await text({
         message: variable.message,
-        initial: variable.initial,
+        initialValue: variable.initial,
+        placeholder: variable.placeholder,
         validate: (value) => {
           if (variable.required && !value) return 'This field is required.'
-          return true
+          return undefined
         },
-      }
+      })
     } else {
-      options = {
-        type: 'select',
-        name: 'value',
+      value = await select({
         message: variable.message,
-        initial: variable.initial,
-        choices: variable.choices.map((choice) =>
-          typeof choice === 'string' ? { title: choice } : choice,
+        initialValue: variable.initial,
+        // initial: variable.initial,
+        options: variable.choices.map(
+          (choice): Choice =>
+            typeof choice === 'string' ? { value: choice } : choice,
         ),
-      }
+      })
     }
-    const { value } = await prompts(options, {
-      onCancel: () => (canceled = true),
-    })
-    if (canceled)
+    if (isCancel(value))
       throw new CliError(
         'Variable input canceled. Please run the command again.',
       )

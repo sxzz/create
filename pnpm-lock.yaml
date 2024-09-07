@@ -11,6 +11,9 @@ importers:
       '@antfu/utils':
         specifier: ^0.7.10
         version: 0.7.10
+      '@clack/prompts':
+        specifier: ^0.7.0
+        version: 0.7.0
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -35,9 +38,6 @@ importers:
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
-      prompts:
-        specifier: ^2.4.2
-        version: 2.4.2
       replace-in-file:
         specifier: ^8.1.0
         version: 8.1.0
@@ -57,9 +57,6 @@ importers:
       '@types/node':
         specifier: ^22.5.2
         version: 22.5.2
-      '@types/prompts':
-        specifier: ^2.4.9
-        version: 2.4.9
       bumpp:
         specifier: ^9.5.2
         version: 9.5.2
@@ -98,6 +95,14 @@ packages:
   '@babel/highlight@7.24.7':
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
+
+  '@clack/core@0.3.4':
+    resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
+
+  '@clack/prompts@0.7.0':
+    resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
+    bundledDependencies:
+      - is-unicode-supported
 
   '@es-joy/jsdoccomment@0.43.1':
     resolution: {integrity: sha512-I238eDtOolvCuvtxrnqtlBaw0BwdQuYqK7eA6XIonicMdOOOb75mqdIzkGDUbS04+1Di007rgm9snFRNeVrOog==}
@@ -475,9 +480,6 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
-
-  '@types/prompts@2.4.9':
-    resolution: {integrity: sha512-qTxFi6Buiu8+50/+3DGIWLHM6QuWsEKugJnnP6iv2Mc4ncxE4A/OJkjuVOA+5X0X1S/nq5VJRa8Lu+nwcvbrKA==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -2213,6 +2215,17 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.0.1
 
+  '@clack/core@0.3.4':
+    dependencies:
+      picocolors: 1.0.1
+      sisteransi: 1.0.5
+
+  '@clack/prompts@0.7.0':
+    dependencies:
+      '@clack/core': 0.3.4
+      picocolors: 1.0.1
+      sisteransi: 1.0.5
+
   '@es-joy/jsdoccomment@0.43.1':
     dependencies:
       '@types/eslint': 8.56.12
@@ -2529,11 +2542,6 @@ snapshots:
       undici-types: 6.19.8
 
   '@types/normalize-package-data@2.4.4': {}
-
-  '@types/prompts@2.4.9':
-    dependencies:
-      '@types/node': 22.5.2
-      kleur: 3.0.3
 
   '@types/unist@3.0.3': {}
 

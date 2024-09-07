@@ -3,11 +3,11 @@ import { homedir } from 'node:os'
 import path from 'node:path'
 import process from 'node:process'
 import { objectPick, toArray } from '@antfu/utils'
+import { confirm, isCancel, select } from '@clack/prompts'
 import chalk from 'chalk'
 import consola from 'consola'
 import { execa } from 'execa'
 import { dump, load } from 'js-yaml'
-import prompts from 'prompts'
 import { loadConfig } from 'unconfig'
 import { CliError, cmdExists, findConfigTypePath } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
@@ -106,25 +106,24 @@ export const getConfig = async (
 }
 
 export const initConfig = async () => {
-  const { create } = await prompts({
-    type: 'confirm',
-    name: 'create',
+  const create = await confirm({
     message: 'Do you want to create a configuration file?',
-    initial: true,
+    initialValue: true,
   })
-  if (!create) {
+  if (isCancel(create) || !create) {
     process.exit(1)
   }
 
-  const { kind } = (await prompts({
-    type: 'select',
-    name: 'kind',
+  const options = (['JavaScript', 'TypeScript', 'JSON', 'YAML'] as const).map(
+    (kind) => ({ value: kind }),
+  )
+  const kind = await select<typeof options, (typeof options)[number]['value']>({
     message: 'What kind of configuration file do you want to create?',
-    choices: ['JavaScript', 'TypeScript', 'JSON', 'YAML'].map((kind) => ({
-      title: kind,
-      value: kind,
-    })),
-  })) as { kind: 'JavaScript' | 'TypeScript' | 'JSON' | 'YAML' }
+    options,
+  })
+  if (isCancel(kind)) {
+    process.exit(1)
+  }
 
   await mkdir(path.dirname(configPath), { recursive: true }).catch(
     () => undefined,
