@@ -17,9 +17,12 @@ import { git } from './features/git'
 import { replace } from './features/replace'
 import { variable } from './features/variable'
 import { CliError, getColor } from './utils'
-import type { ConfigTemplate, Context, ProjectInfo } from './types'
+import type { Config, ConfigTemplate, Context, ProjectInfo } from './types'
 
-export type { Config } from './types'
+export type { Config }
+export function defineConfig(config: Config): Config {
+  return config
+}
 
 export async function edit(): Promise<void> {
   const { init, file } = await getConfig()
