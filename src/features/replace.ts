@@ -11,7 +11,7 @@ import type {
   Context,
 } from '../types'
 
-export async function replace(ctx: Context) {
+export async function replace(ctx: Context): Promise<void> {
   const { template } = ctx
   for (const replace of template.replaces) {
     await doReplace(ctx, replace).catch((error) => {

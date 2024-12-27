@@ -21,7 +21,7 @@ import type { ConfigTemplate, Context, ProjectInfo } from './types'
 
 export type { Config } from './types'
 
-export async function edit() {
+export async function edit(): Promise<void> {
   const { init, file } = await getConfig()
   if (!init) {
     consola.info(`Open config file in ${chalk.blueBright(file)}`)
@@ -32,10 +32,7 @@ export async function edit() {
 export async function run({
   projectPath,
   config,
-}: {
-  projectPath?: string
-  config?: ConfigNormalized
-} = {}) {
+}: { projectPath?: string; config?: ConfigNormalized } = {}): Promise<void> {
   try {
     config ||= (await getConfig()).config
 

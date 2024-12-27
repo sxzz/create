@@ -68,7 +68,7 @@ export async function cmdExists(command: string): Promise<boolean> {
   return code === 0
 }
 
-export async function findConfigTypePath() {
+export async function findConfigTypePath(): Promise<string> {
   const filename = fileURLToPath(import.meta.url)
   const pkgPath = path.dirname(
     (await findUp('package.json', { cwd: filename }))!,

@@ -3,7 +3,7 @@ import { execaCommand } from 'execa'
 import { resolveCallbackables } from '../utils'
 import type { Context } from '../types'
 
-export async function command(context: Context) {
+export async function command(context: Context): Promise<void> {
   const { template, project } = context
   const commands = await resolveCallbackables(template.commands, context)
   for (const command of commands.flat()) {

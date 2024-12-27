@@ -8,7 +8,7 @@ import { CliError } from './utils'
 import type { Config } from './types'
 import { run } from '.'
 
-export async function fromTemplate(template: string) {
+export async function fromTemplate(template: string): Promise<void> {
   const contents = await fetch(
     template.startsWith('https://')
       ? template

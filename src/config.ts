@@ -55,7 +55,10 @@ const demoConfig: Config = {
   ],
 }
 
-export const configPath = path.resolve(homedir(), '.config/create.config')
+export const configPath: string = path.resolve(
+  homedir(),
+  '.config/create.config',
+)
 
 export async function getConfig({
   init = true,
@@ -105,7 +108,7 @@ export async function getConfig({
   return { ...newConfig, init: true }
 }
 
-export const initConfig = async () => {
+export async function initConfig(): Promise<string> {
   const create = await confirm({
     message: 'Do you want to create a configuration file?',
     initialValue: true,
@@ -117,7 +120,7 @@ export const initConfig = async () => {
   const options = (['JavaScript', 'TypeScript', 'JSON', 'YAML'] as const).map(
     (kind) => ({ value: kind }),
   )
-  const kind = await select<typeof options, (typeof options)[number]['value']>({
+  const kind = await select({
     message: 'What kind of configuration file do you want to create?',
     options,
   })
@@ -159,7 +162,7 @@ export default config
   return filePath
 }
 
-export async function editConfig(filePath: string) {
+export async function editConfig(filePath: string): Promise<void> {
   if (await cmdExists('code')) {
     await execa('code', ['-w', filePath])
   } else if (await cmdExists('zed')) {

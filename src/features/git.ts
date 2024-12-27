@@ -3,7 +3,7 @@ import consola from 'consola'
 import { execa, execaSync } from 'execa'
 import type { Context } from '../types'
 
-export async function git({ template, project }: Context) {
+export async function git({ template, project }: Context): Promise<void> {
   if (template.git.init === false) return
 
   await execa('git', ['init', project.path], {

@@ -2,7 +2,7 @@ import { isCancel, select, text } from '@clack/prompts'
 import { CliError, resolveCallbackables } from '../utils'
 import type { Choice, ConfigVariable, Context } from '../types'
 
-export async function variable(context: Context) {
+export async function variable(context: Context): Promise<void> {
   const { template, project } = context
   const variablesList = await resolveCallbackables(template.variables, context)
   const variables: Record<string, ConfigVariable> = Object.assign(
