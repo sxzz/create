@@ -29,7 +29,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
-    "build": "tsup",
+    "build": "tsdown",
     "dev": "tsx ./src/cli.ts",
     "typecheck": "tsc --noEmit",
     "release": "bumpp && pnpm publish",
@@ -57,7 +57,7 @@
     "bumpp": "^9.9.2",
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
-    "tsup": "^8.3.5",
+    "tsdown": "^0.5.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "unplugin-unused": "^0.2.3"

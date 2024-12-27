@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
 import Unused from 'unplugin-unused/esbuild'
 
 export default defineConfig({
@@ -7,5 +7,5 @@ export default defineConfig({
   target: 'node18',
   clean: true,
   dts: true,
-  esbuildPlugins: [Unused()],
+  unused: { level: 'error' },
 })
