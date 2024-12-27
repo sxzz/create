@@ -40,7 +40,7 @@
     "@clack/prompts": "^0.9.0",
     "cac": "^6.7.14",
     "chalk": "^5.4.1",
-    "consola": "^3.3.0",
+    "consola": "^3.3.3",
     "escape-string-regexp": "^5.0.0",
     "execa": "^9.5.2",
     "find-up": "^7.0.0",
