@@ -19,6 +19,8 @@ import { variable } from './features/variable'
 import { CliError, getColor } from './utils'
 import type { ConfigTemplate, Context, ProjectInfo } from './types'
 
+export type { Config } from './types'
+
 export async function edit() {
   const { init, file } = await getConfig()
   if (!init) {
