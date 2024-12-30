@@ -1,7 +1,7 @@
 {
   "name": "@sxzz/create",
   "version": "0.12.0",
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@9.15.2",
   "description": "Command-line for creating projects from templates.",
   "type": "module",
   "license": "MIT",
@@ -57,10 +57,10 @@
     "bumpp": "^9.9.2",
     "eslint": "^9.17.0",
     "prettier": "^3.4.2",
-    "tsdown": "^0.5.2",
+    "tsdown": "^0.5.3",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
-    "unplugin-unused": "^0.2.3"
+    "unplugin-unused": "^0.3.0"
   },
   "engines": {
     "node": ">=18.0.0"
