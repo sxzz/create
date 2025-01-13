@@ -36,7 +36,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@antfu/utils": "^0.7.10",
+    "@antfu/utils": "^8.0.0",
     "@clack/prompts": "^0.9.0",
     "cac": "^6.7.14",
     "chalk": "^5.4.1",
