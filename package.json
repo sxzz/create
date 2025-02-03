@@ -50,7 +50,7 @@
     "unconfig": "^0.6.1"
   },
   "devDependencies": {
-    "@sxzz/eslint-config": "^4.6.0",
+    "@sxzz/eslint-config": "^5.0.0",
     "@sxzz/prettier-config": "^2.1.1",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.13.0",
