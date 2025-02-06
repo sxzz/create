@@ -1,5 +1,4 @@
 import { defineConfig } from 'tsdown'
-import Unused from 'unplugin-unused/esbuild'
 
 export default defineConfig({
   entry: ['./src/{index,cli}.ts'],
