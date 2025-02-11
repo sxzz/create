@@ -14,10 +14,13 @@ export async function variable(context: Context): Promise<void> {
     let value: string | symbol | undefined
 
     if (variable.type === 'text') {
+      const placeholder = await (typeof variable.placeholder === 'function'
+        ? variable.placeholder(context)
+        : variable.placeholder)
       value = await text({
         message: variable.message,
         initialValue: variable.initial,
-        placeholder: variable.placeholder,
+        placeholder,
         validate: (value) => {
           if (variable.required && !value) return 'This field is required.'
           return undefined

@@ -56,7 +56,11 @@ export interface Choice {
 }
 
 export type ConfigVariable = { message: string; initial?: string } & (
-  | { type: 'text'; required?: boolean; placeholder?: string }
+  | {
+      type: 'text'
+      required?: boolean
+      placeholder?: Callbackable<string>
+    }
   | { type: 'select'; choices: string[] | Choice[] }
 )
 
