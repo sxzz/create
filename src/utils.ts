@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import chalk, { type ChalkInstance } from 'chalk'
+import ansis, { type Ansis } from 'ansis'
 import { execa } from 'execa'
 import { findUp } from 'find-up-simple'
 import type { Callbackable, Context } from './types'
@@ -47,10 +47,10 @@ export const COLORS = [
 const isColor = (color: string): color is (typeof COLORS)[number] =>
   COLORS.includes(color as any)
 
-export function getColor(color?: string): ChalkInstance {
-  if (!color) return chalk
-  else if (isColor(color)) return chalk[color]
-  else if (color.startsWith('#')) return chalk.hex(color)
+export function getColor(color?: string): (text: string) => string {
+  if (!color) return (v) => v
+  else if (isColor(color)) return ansis[color]
+  else if (color.startsWith('#')) return ansis.hex(color)
   throw new Error(`Unknown color: ${color}`)
 }
 

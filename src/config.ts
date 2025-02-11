@@ -4,7 +4,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { objectPick, toArray } from '@antfu/utils'
 import { confirm, isCancel, select } from '@clack/prompts'
-import chalk from 'chalk'
+import ansis from 'ansis'
 import consola from 'consola'
 import { execa } from 'execa'
 import { dump, load } from 'js-yaml'
@@ -98,7 +98,7 @@ export async function getConfig({
       file: '',
     }
 
-  consola.warn(chalk.yellowBright('No configuration file found.'))
+  consola.warn(ansis.yellowBright('No configuration file found.'))
 
   const filePath = await initConfig()
   await editConfig(filePath)

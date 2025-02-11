@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { toArray } from '@antfu/utils'
-import chalk from 'chalk'
+import ansis from 'ansis'
 import consola from 'consola'
 import escapeStringRegexp from 'escape-string-regexp'
 import { replaceInFile, type ReplaceInFileConfig } from 'replace-in-file'
@@ -72,9 +72,9 @@ async function doReplace(
   for (const result of results) {
     if (!result.hasChanged) continue
     consola.info(
-      `${chalk.blue.bold(
+      `${ansis.blue.bold(
         path.relative(project.path, result.file),
-      )} was replaced in ${chalk.green(result.numReplacements)} place(s).`,
+      )} was replaced in ${ansis.green(result.numReplacements)} place(s).`,
     )
   }
 }

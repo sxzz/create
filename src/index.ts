@@ -2,7 +2,7 @@ import path from 'node:path'
 import process from 'node:process'
 import { objectKeys, objectPick } from '@antfu/utils'
 import { intro, isCancel, select, text } from '@clack/prompts'
-import chalk from 'chalk'
+import ansis from 'ansis'
 import consola from 'consola'
 import { downloadTemplate } from 'giget'
 import {
@@ -27,7 +27,7 @@ export function defineConfig(config: Config): Config {
 export async function edit(): Promise<void> {
   const { init, file } = await getConfig()
   if (!init) {
-    consola.info(`Open config file in ${chalk.blueBright(file)}`)
+    consola.info(`Open config file in ${ansis.blueBright(file)}`)
     editConfig(file)
   }
 }
@@ -39,7 +39,7 @@ export async function run({
   try {
     config ||= (await getConfig()).config
 
-    intro(chalk.bgBlueBright(' @sxzz/create '))
+    intro(ansis.bgBlueBright(' @sxzz/create '))
     const templates = await chooseTemplate(config)
     const template = normalizeTemplate(templates)
     await create({ projectPath, template })
@@ -125,7 +125,7 @@ async function create({
 
   await variable(ctx)
 
-  consola.info(`Creating project in ${chalk.blueBright(projectPath)}...`)
+  consola.info(`Creating project in ${ansis.blueBright(projectPath)}...`)
   await downloadTemplate(url, {
     provider: 'github',
     dir: projectPath,
@@ -136,7 +136,7 @@ async function create({
   await command(ctx)
 
   consola.success(
-    `${chalk.green.bold(`Done. Now run:`)}\n\n  ${chalk.blueBright(
+    `${ansis.green.bold(`Done. Now run:`)}\n\n  ${ansis.blueBright(
       `cd ${_relatePath}`,
     )}\n`,
   )
