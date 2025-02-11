@@ -1,5 +1,5 @@
 import { isCancel, select, text } from '@clack/prompts'
-import { CliError, resolveCallbackables } from '../utils'
+import { CliError, resolveCallbackable, resolveCallbackables } from '../utils'
 import type { Choice, ConfigVariable, Context } from '../types'
 
 export async function variable(context: Context): Promise<void> {
@@ -14,9 +14,10 @@ export async function variable(context: Context): Promise<void> {
     let value: string | symbol | undefined
 
     if (variable.type === 'text') {
-      const placeholder = await (typeof variable.placeholder === 'function'
-        ? variable.placeholder(context)
-        : variable.placeholder)
+      const placeholder = await resolveCallbackable(
+        variable.placeholder,
+        context,
+      )
       value = await text({
         message: variable.message,
         initialValue: variable.initial,
