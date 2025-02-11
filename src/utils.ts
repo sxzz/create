@@ -73,7 +73,7 @@ export async function findConfigTypePath(): Promise<string> {
   const pkgPath = path.dirname(
     (await findUp('package.json', { cwd: filename }))!,
   )
-  return path.resolve(pkgPath, 'dist/types')
+  return pkgPath
 }
 
 // eslint-disable-next-line require-await

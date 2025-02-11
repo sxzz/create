@@ -20,6 +20,5 @@ cli
   .command('edit')
   .alias('config')
   .action(() => edit().catch((error) => consola.error(error)))
-cli.help()
-cli.version(version)
-cli.parse()
+
+cli.help().version(version).parse()
