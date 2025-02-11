@@ -96,23 +96,23 @@ async function chooseTemplate(config: ConfigNormalized) {
 
 async function create({
   template,
-  projectPath: _relatePath,
+  projectPath: _relativePath,
 }: {
   template: TemplateNormalized
   projectPath?: string
 }) {
-  let relatePath: string | symbol | undefined = _relatePath
-  if (!relatePath) {
-    relatePath = await text({
+  let relativePath: string | symbol | undefined = _relativePath
+  if (!relativePath) {
+    relativePath = await text({
       message: 'Folder name of the project',
       validate: (v) =>
         v.length === 0 ? 'folder name cannot be empty.' : undefined,
     })
   }
-  if (!relatePath || isCancel(relatePath))
+  if (!relativePath || isCancel(relativePath))
     throw new CliError('No folder name provided.')
 
-  const projectPath = path.resolve(process.cwd(), relatePath)
+  const projectPath = path.resolve(template.cwd, relativePath)
   const folderName = path.basename(projectPath)
   const url = template.url!
   const project: ProjectInfo = {
@@ -137,7 +137,7 @@ async function create({
 
   consola.success(
     `${ansis.green.bold(`Done. Now run:`)}\n\n  ${ansis.blueBright(
-      `cd ${_relatePath}`,
+      `cd ${path.relative(process.cwd(), projectPath)}`,
     )}\n`,
   )
 }

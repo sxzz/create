@@ -93,9 +93,13 @@ export interface ConfigTemplate {
     | ConfigReplace[]
 
   commands?: Callbackable<Arrayable<string>>
+  cwd?: string
 }
 
 export interface Config
-  extends Pick<ConfigTemplate, 'git' | 'replaces' | 'variables' | 'commands'> {
+  extends Pick<
+    ConfigTemplate,
+    'git' | 'replaces' | 'variables' | 'commands' | 'cwd'
+  > {
   templates?: Arrayable<ConfigTemplate>
 }

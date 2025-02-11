@@ -22,6 +22,7 @@ export type TemplateNormalized = MergeObject<
     replaces: ConfigReplace[]
     variables: Array<NonNullable<ConfigTemplate['variables']>>
     commands: Array<NonNullable<ConfigTemplate['commands']>>
+    cwd: string
   }
 >
 export type ConfigNormalized = MergeObject<
@@ -222,6 +223,7 @@ export function normalizeTemplate(
     variables: [...a.variables, ...(b.variables ? [b.variables] : [])],
     commands: [...a.commands, ...(b.commands ? [b.commands] : [])],
     children: undefined,
+    cwd: b.cwd || a.cwd,
   })
 
   const initial: TemplateNormalized = {
@@ -230,6 +232,7 @@ export function normalizeTemplate(
     replaces: [],
     variables: [],
     commands: [],
+    cwd: process.cwd(),
   }
   return templates.reduce((a, b) => mergeTemplate(a, b), initial)
 }
