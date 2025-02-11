@@ -50,8 +50,11 @@ URL format: `repo[/subpath][#ref]`. See [examples](https://github.com/unjs/giget
 Run `create config` to modify config.
 
 ```yaml
+cwd: /Users/your-name/projects # optional, defaults to process.cwd()
+
 git:
   init: true # optional, defaults to true
+  add: false
 
 templates:
   - name: Library # must be unique
