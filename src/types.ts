@@ -7,8 +7,8 @@ export interface ProjectInfo {
   path: string
   variables: Record<string, any>
   git?: {
-    name: string
-    email: string
+    getName: () => Promise<string>
+    getEmail: () => Promise<string>
   }
 }
 
