@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import ansis, { type Ansis } from 'ansis'
+import ansis from 'ansis'
 import { execa } from 'execa'
 import { findUp } from 'find-up-simple'
 import type { Callbackable, Context } from './types'
