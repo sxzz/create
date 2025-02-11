@@ -6,8 +6,8 @@ import { objectPick, toArray } from '@antfu/utils'
 import { confirm, isCancel, select } from '@clack/prompts'
 import ansis from 'ansis'
 import consola from 'consola'
-import { execa } from 'execa'
 import { dump, load } from 'js-yaml'
+import { x } from 'tinyexec'
 import { loadConfig } from 'unconfig'
 import { CliError, cmdExists, findConfigTypePath } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
@@ -164,11 +164,11 @@ export default config
 
 export async function editConfig(filePath: string): Promise<void> {
   if (await cmdExists('code')) {
-    await execa('code', ['-w', filePath])
+    await x('code', [filePath])
   } else if (await cmdExists('zed')) {
-    await execa('zed', [filePath], { stdio: 'inherit' })
+    await x('zed', [filePath], { nodeOptions: { stdio: 'inherit' } })
   } else if (await cmdExists('vim')) {
-    await execa('vim', [filePath], { stdio: 'inherit' })
+    await x('vim', [filePath], { nodeOptions: { stdio: 'inherit' } })
   } else {
     consola.info(
       `VSCode and Vim are not detected, please open and edit config file manually: ${filePath}`,

@@ -1,8 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ansis from 'ansis'
-import { execa } from 'execa'
 import { findUp } from 'find-up-simple'
+import { x } from 'tinyexec'
 import type { Callbackable, Context } from './types'
 
 export const COLORS = [
@@ -56,7 +56,7 @@ export function getColor(color?: string): (text: string) => string {
 
 export async function which(command: string): Promise<number> {
   try {
-    const { exitCode } = await execa('which', [command])
+    const { exitCode } = await x('which', [command])
     return exitCode!
   } catch (error: any) {
     return error.exitCode

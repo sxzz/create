@@ -1,22 +1,24 @@
 import ansis from 'ansis'
 import consola from 'consola'
-import { execa } from 'execa'
+import { x } from 'tinyexec'
 import type { Context } from '../types'
 
 export async function git({ template, project }: Context): Promise<void> {
   if (template.git.init === false) return
 
-  await execa('git', ['init', project.path], {
-    stdout: 'ignore',
-    stderr: 'inherit',
+  await x('git', ['init', project.path], {
+    nodeOptions: {
+      stdio: ['ignore', 'ignore', 'inherit'],
+    },
   })
   consola.success('Git initialized.')
 
-  const run = (file: string, args?: readonly string[]) =>
-    execa(file, args, {
-      stdout: 'pipe',
-      stderr: 'inherit',
-      cwd: project.path,
+  const run = (file: string, args?: string[]) =>
+    x(file, args, {
+      nodeOptions: {
+        stdio: ['ignore', 'ignore', 'inherit'],
+        cwd: project.path,
+      },
     }).then((res) => res.stdout.trim())
 
   if (template.git.add) {
