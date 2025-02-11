@@ -2,7 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import chalk, { type ChalkInstance } from 'chalk'
 import { execa } from 'execa'
-import { findUp } from 'find-up'
+import { findUp } from 'find-up-simple'
 import type { Callbackable, Context } from './types'
 
 export const COLORS = [
