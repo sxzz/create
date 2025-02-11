@@ -163,7 +163,10 @@ export default config
 }
 
 export async function editConfig(filePath: string): Promise<void> {
-  if (await cmdExists('code')) {
+  const EDITOR = process.env.EDITOR
+  if (EDITOR && (await cmdExists(EDITOR))) {
+    await x(EDITOR, [filePath], { nodeOptions: { stdio: 'inherit' } })
+  } else if (await cmdExists('code')) {
     await x('code', [filePath])
   } else if (await cmdExists('zed')) {
     await x('zed', [filePath], { nodeOptions: { stdio: 'inherit' } })
@@ -171,7 +174,7 @@ export async function editConfig(filePath: string): Promise<void> {
     await x('vim', [filePath], { nodeOptions: { stdio: 'inherit' } })
   } else {
     consola.info(
-      `VSCode and Vim are not detected, please open and edit config file manually: ${filePath}`,
+      `Editors are not detected, please open and edit config file manually: ${filePath}`,
     )
   }
 }
