@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@antfu/utils':
-        specifier: ^8.1.1
-        version: 8.1.1
+        specifier: ^9.1.0
+        version: 9.1.0
       '@clack/prompts':
         specifier: ^0.10.0
         version: 0.10.0
@@ -83,6 +83,9 @@ packages:
 
   '@antfu/utils@8.1.1':
     resolution: {integrity: sha512-Mex9nXf9vR6AhcXmMrlz/HVgYYZpVGJ6YlPgwl7UnaFpnshXs6EK/oa5Gpf3CzENMjkvEx2tQtntGnb7UtSTOQ==}
+
+  '@antfu/utils@9.1.0':
+    resolution: {integrity: sha512-R+3bzxNN0ZscQg3ZVG7suqBTFP2dbdaCjKe5KY6hqNZimdyZ32KemotJPmoqQhKH28CqdgyXQGkWZlCGsGQmJw==}
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -2066,6 +2069,8 @@ packages:
 snapshots:
 
   '@antfu/utils@8.1.1': {}
+
+  '@antfu/utils@9.1.0': {}
 
   '@babel/code-frame@7.26.2':
     dependencies:
