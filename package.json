@@ -44,7 +44,7 @@
     "consola": "^3.4.0",
     "escape-string-regexp": "^5.0.0",
     "find-up-simple": "^1.0.1",
-    "giget": "^1.2.5",
+    "giget": "^2.0.0",
     "js-yaml": "^4.1.0",
     "replace-in-file": "^8.3.0",
     "tinyexec": "^0.3.2",
