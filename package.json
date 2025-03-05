@@ -5,6 +5,8 @@
   "description": "Command-line for creating projects from templates.",
   "type": "module",
   "license": "MIT",
+  "author": "三咲智子 Kevin Deng <sxzz@sxzz.moe>",
+  "funding": "https://github.com/sponsors/sxzz",
   "files": [
     "dist"
   ],
