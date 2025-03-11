@@ -6,5 +6,6 @@ export default defineConfig({
   target: 'node18',
   clean: true,
   dts: true,
+  bundleDts: { resolve: ['@antfu/utils'] },
   unused: { level: 'error' },
 })
