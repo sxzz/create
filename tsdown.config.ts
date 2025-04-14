@@ -5,7 +5,6 @@ export default defineConfig({
   format: ['esm'],
   target: 'node18',
   clean: true,
-  dts: true,
-  bundleDts: { resolve: ['@antfu/utils'] },
+  dts: { resolve: ['@antfu/utils'] },
   unused: { level: 'error' },
 })
