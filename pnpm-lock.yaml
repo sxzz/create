@@ -35,9 +35,6 @@ importers:
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
-      replace-in-file:
-        specifier: ^8.3.0
-        version: 8.3.0
       tinyexec:
         specifier: ^1.0.1
         version: 1.0.1
@@ -69,6 +66,9 @@ importers:
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
+      replace-in-file:
+        specifier: ^8.3.0
+        version: 8.3.0
       tsdown:
         specifier: ^0.8.0-beta.2
         version: 0.8.0-beta.2(publint@0.3.4)(typescript@5.8.3)(unplugin-unused@0.4.1)
