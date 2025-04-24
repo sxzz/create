@@ -31,7 +31,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "create": "./bin/create.js"
+    "create": "./dist/cli.js"
   },
   "publishConfig": {
     "access": "public"
