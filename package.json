@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.10.1",
-    "ansis": "^3.17.0",
+    "ansis": "^4.0.0",
     "args-tokenizer": "^0.3.0",
     "cac": "^6.7.14",
     "consola": "^3.4.2",
@@ -60,15 +60,15 @@
   },
   "devDependencies": {
     "@antfu/utils": "^9.2.0",
-    "@sxzz/eslint-config": "^6.2.0",
+    "@sxzz/eslint-config": "^7.0.1",
     "@sxzz/prettier-config": "^2.2.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.15.3",
+    "@types/node": "^22.15.17",
     "bumpp": "^10.1.0",
     "eslint": "^9.26.0",
     "prettier": "^3.5.3",
     "replace-in-file": "^8.3.0",
-    "tsdown": "^0.10.2",
+    "tsdown": "^0.11.1",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
