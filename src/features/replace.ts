@@ -28,7 +28,7 @@ async function doReplace(
 
   const buildPattern = (from: string | RegExp) => {
     if (typeof from !== 'string') return from
-    if (!(all || ignoreCase)) return from
+    if (!all && !ignoreCase) return from
 
     let flags = ''
     if (ignoreCase) flags += 'i'
