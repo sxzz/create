@@ -46,7 +46,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@clack/prompts": "^0.10.1",
+    "@clack/prompts": "^0.11.0",
     "ansis": "^4.0.0",
     "args-tokenizer": "^0.3.0",
     "cac": "^6.7.14",
@@ -63,12 +63,12 @@
     "@sxzz/eslint-config": "^7.0.1",
     "@sxzz/prettier-config": "^2.2.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.15.19",
+    "@types/node": "^22.15.21",
     "bumpp": "^10.1.1",
     "eslint": "^9.27.0",
     "prettier": "^3.5.3",
     "replace-in-file": "^8.3.0",
-    "tsdown": "^0.11.11",
+    "tsdown": "^0.12.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
