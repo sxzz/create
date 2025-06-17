@@ -60,18 +60,18 @@
   },
   "devDependencies": {
     "@antfu/utils": "^9.2.0",
-    "@sxzz/eslint-config": "^7.0.2",
+    "@sxzz/eslint-config": "^7.0.3",
     "@sxzz/prettier-config": "^2.2.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.15.30",
+    "@types/node": "^22.15.32",
     "bumpp": "^10.1.1",
-    "eslint": "^9.28.0",
+    "eslint": "^9.29.0",
     "prettier": "^3.5.3",
     "replace-in-file": "^8.3.0",
-    "tsdown": "^0.12.7",
-    "tsx": "^4.19.4",
+    "tsdown": "^0.12.8",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "unplugin-unused": "^0.5.0"
+    "unplugin-unused": "^0.5.1"
   },
   "engines": {
     "node": ">=20.18.0"
