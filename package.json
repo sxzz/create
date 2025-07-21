@@ -60,10 +60,10 @@
   },
   "devDependencies": {
     "@antfu/utils": "^9.2.0",
-    "@sxzz/eslint-config": "^7.0.5",
+    "@sxzz/eslint-config": "^7.0.6",
     "@sxzz/prettier-config": "^2.2.3",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.16.3",
+    "@types/node": "^22.16.5",
     "bumpp": "^10.2.0",
     "eslint": "^9.31.0",
     "prettier": "^3.6.2",
