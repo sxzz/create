@@ -65,10 +65,10 @@
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.16.5",
     "bumpp": "^10.2.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "prettier": "^3.6.2",
     "replace-in-file": "^8.3.0",
-    "tsdown": "^0.12.9",
+    "tsdown": "^0.13.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "unplugin-unused": "^0.5.1"
