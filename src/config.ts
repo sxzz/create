@@ -145,7 +145,7 @@ export async function initConfig(): Promise<string> {
       break
     case 'TypeScript': {
       filePath += '.ts'
-      const configTypePath = (await findConfigTypePath()).replaceAll('\\', '/')
+      const configTypePath = findConfigTypePath().replaceAll('\\', '/')
       contents = `import type { Config } from '${configTypePath}'
 
 const config: Config = ${JSON.stringify(demoConfig, undefined, 2)}

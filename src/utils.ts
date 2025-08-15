@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ansis from 'ansis'
-import { findUp } from 'find-up-simple'
+import { up } from 'empathic/package'
 import { x } from 'tinyexec'
 import type { Callbackable, Context } from './types'
 
@@ -68,11 +68,9 @@ export async function cmdExists(command: string): Promise<boolean> {
   return code === 0
 }
 
-export async function findConfigTypePath(): Promise<string> {
+export function findConfigTypePath(): string {
   const filename = fileURLToPath(import.meta.url)
-  const pkgPath = path.dirname(
-    (await findUp('package.json', { cwd: filename }))!,
-  )
+  const pkgPath = path.dirname(up({ cwd: filename })!)
   return pkgPath
 }
 
