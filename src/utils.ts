@@ -15,8 +15,6 @@ export const COLORS = [
   'cyan',
   'white',
   'gray',
-  'grey',
-  'blackBright',
   'redBright',
   'greenBright',
   'yellowBright',
@@ -33,8 +31,6 @@ export const COLORS = [
   'bgCyan',
   'bgWhite',
   'bgGray',
-  'bgGrey',
-  'bgBlackBright',
   'bgRedBright',
   'bgGreenBright',
   'bgYellowBright',
@@ -44,8 +40,9 @@ export const COLORS = [
   'bgWhiteBright',
 ] as const
 
-const isColor = (color: string): color is (typeof COLORS)[number] =>
-  COLORS.includes(color as any)
+function isColor(color: string): color is (typeof COLORS)[number] {
+  return COLORS.includes(color as any)
+}
 
 export function getColor(color?: string): (text: string) => string {
   if (!color) return (v) => v
