@@ -9,4 +9,5 @@ export default defineConfig({
   alias: {
     chalk: 'ansis',
   },
+  exports: true,
 })

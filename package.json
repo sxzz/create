@@ -22,12 +22,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
+    ".": "./dist/index.js",
+    "./cli": "./dist/cli.js",
     "./package.json": "./package.json"
   },
   "bin": {
@@ -42,7 +38,7 @@
     "build": "tsdown",
     "dev": "tsx ./src/cli.ts",
     "typecheck": "tsc --noEmit",
-    "release": "bumpp && pnpm publish",
+    "release": "bumpp",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
