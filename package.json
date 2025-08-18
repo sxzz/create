@@ -59,7 +59,7 @@
     "@sxzz/eslint-config": "^7.1.2",
     "@sxzz/prettier-config": "^2.2.3",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.2.1",
+    "@types/node": "^24.3.0",
     "bumpp": "^10.2.3",
     "eslint": "^9.33.0",
     "prettier": "^3.6.2",
@@ -67,7 +67,7 @@
     "tsdown": "^0.14.1",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2",
-    "unplugin-unused": "^0.5.1"
+    "unplugin-unused": "^0.5.2"
   },
   "engines": {
     "node": ">=20.18.0"
