@@ -1,7 +1,7 @@
 {
   "name": "@sxzz/create",
   "version": "0.15.3",
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.15.0",
   "description": "Command-line for creating projects from templates.",
   "type": "module",
   "license": "MIT",
@@ -52,20 +52,20 @@
     "giget": "^2.0.0",
     "js-yaml": "^4.1.0",
     "tinyexec": "^1.0.1",
-    "unconfig": "^7.3.2"
+    "unconfig": "^7.3.3"
   },
   "devDependencies": {
     "@antfu/utils": "^9.2.0",
-    "@sxzz/eslint-config": "^7.1.2",
-    "@sxzz/prettier-config": "^2.2.3",
+    "@sxzz/eslint-config": "^7.1.4",
+    "@sxzz/prettier-config": "^2.2.4",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.3.0",
     "bumpp": "^10.2.3",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "prettier": "^3.6.2",
     "replace-in-file": "^8.3.0",
     "tsdown": "^0.14.1",
-    "tsx": "^4.20.4",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "unplugin-unused": "^0.5.2"
   },
