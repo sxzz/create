@@ -1,4 +1,7 @@
-# @sxzz/create [![npm](https://img.shields.io/npm/v/@sxzz/create.svg)](https://npmjs.com/package/@sxzz/create)
+# @sxzz/create
+
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
 
 Command-line for creating projects from templates.
 
@@ -83,4 +86,11 @@ templates:
 
 ## License
 
-[MIT](./LICENSE) License © 2022-PRESENT [三咲智子](https://github.com/sxzz)
+[MIT](./LICENSE) License © 2022-PRESENT [Kevin Deng](https://github.com/sxzz)
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/@sxzz/create.svg
+[npm-version-href]: https://npmjs.com/package/@sxzz/create
+[npm-downloads-src]: https://img.shields.io/npm/dm/@sxzz/create
+[npm-downloads-href]: https://www.npmcharts.com/compare/@sxzz/create?interval=30

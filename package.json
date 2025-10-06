@@ -1,7 +1,7 @@
 {
   "name": "@sxzz/create",
   "version": "0.15.3",
-  "packageManager": "pnpm@10.17.1",
+  "packageManager": "pnpm@10.18.1",
   "description": "Command-line for creating projects from templates.",
   "type": "module",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/sxzz/create.git"
   },
-  "author": "三咲智子 Kevin Deng <sxzz@sxzz.moe>",
+  "author": "Kevin Deng <sxzz@sxzz.moe>",
   "funding": "https://github.com/sponsors/sxzz",
   "files": [
     "dist"
@@ -55,22 +55,22 @@
     "unconfig": "^7.3.3"
   },
   "devDependencies": {
-    "@antfu/utils": "^9.2.1",
-    "@sxzz/eslint-config": "^7.2.6",
+    "@antfu/utils": "^9.3.0",
+    "@sxzz/eslint-config": "^7.2.7",
     "@sxzz/prettier-config": "^2.2.4",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.5.2",
-    "bumpp": "^10.2.3",
-    "eslint": "^9.36.0",
+    "@types/node": "^24.7.0",
+    "bumpp": "^10.3.1",
+    "eslint": "^9.37.0",
     "prettier": "^3.6.2",
     "replace-in-file": "^8.3.0",
-    "tsdown": "^0.15.5",
+    "tsdown": "^0.15.6",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.2",
+    "typescript": "^5.9.3",
     "unplugin-unused": "^0.5.3"
   },
   "engines": {
-    "node": ">=20.18.0"
+    "node": ">=20.19.0"
   },
   "prettier": "@sxzz/prettier-config"
 }
