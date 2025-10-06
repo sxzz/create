@@ -1,6 +1,6 @@
 {
   "name": "@sxzz/create",
-  "version": "0.15.3",
+  "version": "0.15.4",
   "packageManager": "pnpm@10.18.1",
   "description": "Command-line for creating projects from templates.",
   "type": "module",
