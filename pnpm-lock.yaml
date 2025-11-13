@@ -32,15 +32,15 @@ importers:
       giget:
         specifier: ^2.0.0
         version: 2.0.0
-      js-yaml:
-        specifier: ^4.1.1
-        version: 4.1.1
       tinyexec:
         specifier: ^1.0.2
         version: 1.0.2
       unconfig:
         specifier: ^7.4.1
         version: 7.4.1
+      yaml:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@antfu/utils':
         specifier: ^9.3.0
@@ -51,9 +51,6 @@ importers:
       '@sxzz/prettier-config':
         specifier: ^2.2.4
         version: 2.2.4
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.1
@@ -642,9 +639,6 @@ packages:
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
-
-  '@types/js-yaml@4.0.9':
-    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -2700,8 +2694,6 @@ snapshots:
     optional: true
 
   '@types/estree@1.0.8': {}
-
-  '@types/js-yaml@4.0.9': {}
 
   '@types/json-schema@7.0.15': {}
 

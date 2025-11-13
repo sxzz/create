@@ -1,8 +1,8 @@
 import { mkdtemp, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
-import { load } from 'js-yaml'
 import { loadConfig } from 'unconfig'
+import { parse } from 'yaml'
 import { normalizeConfig } from './config'
 import { CliError } from './utils'
 import type { Config } from './types'
@@ -21,7 +21,7 @@ export async function fromTemplate(template: string): Promise<void> {
 
   let config: Config
   if (filename.endsWith('.yaml') || filename.endsWith('.yml')) {
-    config = load(contents) as Config
+    config = parse(contents) as Config
   } else if (filename.endsWith('.json')) {
     config = JSON.parse(contents) as Config
   } else {

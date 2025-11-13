@@ -50,15 +50,14 @@
     "empathic": "^2.0.0",
     "escape-string-regexp": "^5.0.0",
     "giget": "^2.0.0",
-    "js-yaml": "^4.1.1",
     "tinyexec": "^1.0.2",
-    "unconfig": "^7.4.1"
+    "unconfig": "^7.4.1",
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@antfu/utils": "^9.3.0",
     "@sxzz/eslint-config": "^7.2.10",
     "@sxzz/prettier-config": "^2.2.4",
-    "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.10.1",
     "bumpp": "^10.3.1",
     "eslint": "^9.39.1",

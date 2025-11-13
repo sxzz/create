@@ -6,9 +6,9 @@ import { objectPick, toArray } from '@antfu/utils'
 import { confirm, isCancel, select } from '@clack/prompts'
 import ansis from 'ansis'
 import consola from 'consola'
-import { dump, load } from 'js-yaml'
 import { x } from 'tinyexec'
 import { loadConfig } from 'unconfig'
+import { parse, stringify } from 'yaml'
 import { CliError, cmdExists, findConfigTypePath } from './utils'
 import type { Config, ConfigReplace, ConfigTemplate } from './types'
 
@@ -76,7 +76,7 @@ export async function getConfig({
         files: configPath,
         extensions: ['yaml', 'yml'],
         async parser(filePath) {
-          return load(await readFile(filePath, 'utf8')) as Config
+          return parse(await readFile(filePath, 'utf8')) as Config
         },
       },
     ],
@@ -156,7 +156,7 @@ export default config
     }
     case 'YAML':
       filePath += '.yml'
-      contents = dump(demoConfig)
+      contents = stringify(demoConfig)
       break
   }
   await writeFile(filePath, contents)
