@@ -24,7 +24,7 @@ export async function variable(context: Context): Promise<void> {
         placeholder,
         validate: (value) => {
           if (variable.required && !value) return 'This field is required.'
-          return undefined
+          return
         },
       })
     } else {

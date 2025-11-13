@@ -214,7 +214,7 @@ export function normalizeTemplate(
     ...b,
     git: {
       ...a.git,
-      ...(b.git || {}),
+      ...b.git,
     },
     replaces: [
       ...normalizeReplaces(a.replaces),
