@@ -10,4 +10,16 @@ export default defineConfig({
     chalk: 'ansis',
   },
   exports: true,
+  inlineOnly: [
+    '@antfu/utils',
+    'replace-in-file',
+    'chalk',
+    'glob',
+    'minimatch',
+    'brace-expansion',
+    'path-scurry',
+    'minipass',
+    'balanced-match',
+    'lru-cache',
+  ],
 })
