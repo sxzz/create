@@ -5,21 +5,23 @@ export default defineConfig({
   dts: {
     resolve: ['@antfu/utils', 'replace-in-file'],
   },
-  unused: { level: 'error' },
-  alias: {
-    chalk: 'ansis',
+  unused: {
+    level: 'error',
+    ignore: ['tinyglobby'],
   },
-  exports: true,
-  inlineOnly: [
-    '@antfu/utils',
-    'replace-in-file',
-    'chalk',
-    'glob',
-    'minimatch',
-    'brace-expansion',
-    'path-scurry',
-    'minipass',
-    'balanced-match',
-    'lru-cache',
+  plugins: [
+    {
+      name: 'alias',
+      resolveId(id) {
+        if (id === 'glob') {
+          return { id: 'tinyglobby', external: true }
+        }
+        if (id === 'chalk') {
+          return { id: 'ansis', external: true }
+        }
+      },
+    },
   ],
+  exports: true,
+  inlineOnly: ['@antfu/utils', 'replace-in-file'],
 })

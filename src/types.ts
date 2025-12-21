@@ -96,10 +96,9 @@ export interface ConfigTemplate {
   cwd?: string
 }
 
-export interface Config
-  extends Pick<
-    ConfigTemplate,
-    'git' | 'replaces' | 'variables' | 'commands' | 'cwd'
-  > {
+export interface Config extends Pick<
+  ConfigTemplate,
+  'git' | 'replaces' | 'variables' | 'commands' | 'cwd'
+> {
   templates?: Arrayable<ConfigTemplate>
 }
