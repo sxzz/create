@@ -2,7 +2,7 @@
   "name": "@sxzz/create",
   "type": "module",
   "version": "0.15.6",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.0",
   "description": "Command-line for creating projects from templates.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -62,16 +62,16 @@
     "@antfu/utils": "^9.3.0",
     "@sxzz/eslint-config": "^7.4.4",
     "@sxzz/prettier-config": "^2.2.6",
-    "@types/node": "^25.0.3",
-    "@typescript/native-preview": "7.0.0-dev.20260104.1",
+    "@types/node": "^25.0.6",
+    "@typescript/native-preview": "7.0.0-dev.20260111.1",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "replace-in-file": "^8.4.0",
-    "tsdown": "^0.18.4",
+    "tsdown": "^0.19.0",
     "typescript": "^5.9.3",
     "unplugin-unused": "^0.5.6",
-    "unrun": "^0.2.22"
+    "unrun": "^0.2.24"
   },
   "prettier": "@sxzz/prettier-config"
 }
