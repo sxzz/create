@@ -2,7 +2,7 @@
   "name": "@sxzz/create",
   "type": "module",
   "version": "0.15.6",
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.29.1",
   "description": "Command-line for creating projects from templates.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -20,8 +20,6 @@
     "./cli": "./dist/cli.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "bin": {
     "create": "./dist/cli.mjs"
@@ -52,7 +50,7 @@
     "consola": "^3.4.2",
     "empathic": "^2.0.0",
     "escape-string-regexp": "^5.0.0",
-    "giget": "^3.1.1",
+    "giget": "^3.1.2",
     "tinyexec": "^1.0.2",
     "tinyglobby": "^0.2.15",
     "unconfig": "^7.4.2",
@@ -60,18 +58,19 @@
   },
   "devDependencies": {
     "@antfu/utils": "^9.3.0",
-    "@sxzz/eslint-config": "^7.5.1",
-    "@sxzz/prettier-config": "^2.3.0",
-    "@types/node": "^25.2.0",
-    "@typescript/native-preview": "7.0.0-dev.20260201.1",
-    "bumpp": "^10.4.0",
-    "eslint": "^9.39.2",
+    "@sxzz/eslint-config": "^7.6.1",
+    "@sxzz/prettier-config": "^2.3.1",
+    "@types/node": "^25.2.2",
+    "@typescript/native-preview": "7.0.0-dev.20260208.1",
+    "bumpp": "^10.4.1",
+    "eslint": "^10.0.0",
     "prettier": "^3.8.1",
     "replace-in-file": "^8.4.0",
-    "tsdown": "^0.20.1",
+    "tsdown": "^0.20.3",
+    "tsdown-preset-sxzz": "^0.3.2",
     "typescript": "^5.9.3",
     "unplugin-unused": "^0.5.7",
-    "unrun": "^0.2.26"
+    "unrun": "^0.2.27"
   },
   "prettier": "@sxzz/prettier-config"
 }
