@@ -2,7 +2,7 @@
   "name": "@sxzz/create",
   "type": "module",
   "version": "0.15.7",
-  "packageManager": "pnpm@10.29.1",
+  "packageManager": "pnpm@10.29.2",
   "description": "Command-line for creating projects from templates.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
