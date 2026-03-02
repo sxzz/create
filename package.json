@@ -46,7 +46,7 @@
     "@clack/prompts": "^1.0.1",
     "ansis": "^4.2.0",
     "args-tokenizer": "^0.3.0",
-    "cac": "^6.7.14",
+    "cac": "^7.0.0",
     "consola": "^3.4.2",
     "empathic": "^2.0.0",
     "escape-string-regexp": "^5.0.0",
