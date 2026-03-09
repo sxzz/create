@@ -20,7 +20,6 @@
     "./cli": "./dist/cli.mjs",
     "./package.json": "./package.json"
   },
-  "types": "./dist/index.d.mts",
   "bin": {
     "create": "./dist/cli.mjs"
   },
@@ -56,6 +55,10 @@
     "unconfig": "^7.5.0",
     "yaml": "^2.8.2"
   },
+  "inlinedDependencies": {
+    "@antfu/utils": "9.3.0",
+    "replace-in-file": "8.4.0"
+  },
   "devDependencies": {
     "@antfu/utils": "^9.3.0",
     "@sxzz/eslint-config": "^7.8.3",
@@ -71,9 +74,5 @@
     "typescript": "^5.9.3",
     "unplugin-unused": "^0.5.7"
   },
-  "prettier": "@sxzz/prettier-config",
-  "inlinedDependencies": {
-    "@antfu/utils": "9.3.0",
-    "replace-in-file": "8.4.0"
-  }
+  "prettier": "@sxzz/prettier-config"
 }

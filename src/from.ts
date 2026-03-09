@@ -5,8 +5,8 @@ import { loadConfig } from 'unconfig'
 import { parse } from 'yaml'
 import { normalizeConfig } from './config.ts'
 import { CliError } from './utils.ts'
-import type { Config } from './types.ts'
 import { run } from './index.ts'
+import type { Config } from './types.ts'
 
 export async function fromTemplate(template: string): Promise<void> {
   const contents = await fetch(
