@@ -37,7 +37,7 @@
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
     "build": "tsdown",
-    "dev": "unrun ./src/cli.ts",
+    "dev": "node ./src/cli.ts",
     "typecheck": "tsgo --noEmit",
     "release": "bumpp",
     "prepublishOnly": "pnpm run build"
@@ -61,16 +61,19 @@
     "@sxzz/eslint-config": "^7.8.3",
     "@sxzz/prettier-config": "^2.3.1",
     "@types/node": "^25.3.5",
-    "@typescript/native-preview": "7.0.0-dev.20260308.1",
+    "@typescript/native-preview": "7.0.0-dev.20260309.1",
     "bumpp": "^10.4.1",
     "eslint": "^10.0.3",
     "prettier": "^3.8.1",
     "replace-in-file": "^8.4.0",
-    "tsdown": "^0.21.0",
+    "tsdown": "^0.21.1",
     "tsdown-preset-sxzz": "^0.4.0",
     "typescript": "^5.9.3",
-    "unplugin-unused": "^0.5.7",
-    "unrun": "^0.2.30"
+    "unplugin-unused": "^0.5.7"
   },
-  "prettier": "@sxzz/prettier-config"
+  "prettier": "@sxzz/prettier-config",
+  "inlinedDependencies": {
+    "@antfu/utils": "9.3.0",
+    "replace-in-file": "8.4.0"
+  }
 }

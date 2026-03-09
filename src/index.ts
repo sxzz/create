@@ -11,13 +11,13 @@ import {
   normalizeTemplate,
   type ConfigNormalized,
   type TemplateNormalized,
-} from './config'
-import { command } from './features/command'
-import { git } from './features/git'
-import { replace } from './features/replace'
-import { variable } from './features/variable'
-import { CliError, getColor } from './utils'
-import type { Config, ConfigTemplate, Context, ProjectInfo } from './types'
+} from './config.ts'
+import { command } from './features/command.ts'
+import { git } from './features/git.ts'
+import { replace } from './features/replace.ts'
+import { variable } from './features/variable.ts'
+import { CliError, getColor } from './utils.ts'
+import type { Config, ConfigTemplate, Context, ProjectInfo } from './types.ts'
 
 export type { Config }
 export function defineConfig(config: Config): Config {
@@ -105,8 +105,7 @@ async function create({
   if (!relativePath) {
     relativePath = await text({
       message: 'Folder name of the project',
-      validate: (v) =>
-        v.length === 0 ? 'folder name cannot be empty.' : undefined,
+      validate: (v) => (v?.length ? undefined : 'folder name cannot be empty.'),
     })
   }
   if (!relativePath || isCancel(relativePath))

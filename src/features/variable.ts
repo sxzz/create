@@ -1,6 +1,10 @@
 import { isCancel, select, text } from '@clack/prompts'
-import { CliError, resolveCallbackable, resolveCallbackables } from '../utils'
-import type { Choice, ConfigVariable, Context } from '../types'
+import {
+  CliError,
+  resolveCallbackable,
+  resolveCallbackables,
+} from '../utils.ts'
+import type { Choice, ConfigVariable, Context } from '../types.ts'
 
 export async function variable(context: Context): Promise<void> {
   const { template, project } = context

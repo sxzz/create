@@ -9,7 +9,7 @@ import type {
   ConfigReplaceFromCallback,
   ConfigReplaceToCallback,
   Context,
-} from '../types'
+} from '../types.ts'
 
 export async function replace(ctx: Context): Promise<void> {
   const { template } = ctx

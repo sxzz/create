@@ -3,10 +3,10 @@ import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { loadConfig } from 'unconfig'
 import { parse } from 'yaml'
-import { normalizeConfig } from './config'
-import { CliError } from './utils'
-import type { Config } from './types'
-import { run } from '.'
+import { normalizeConfig } from './config.ts'
+import { CliError } from './utils.ts'
+import type { Config } from './types.ts'
+import { run } from './index.ts'
 
 export async function fromTemplate(template: string): Promise<void> {
   const contents = await fetch(

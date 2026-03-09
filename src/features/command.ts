@@ -1,8 +1,8 @@
 import { tokenizeArgs } from 'args-tokenizer'
 import consola from 'consola'
 import { x } from 'tinyexec'
-import { resolveCallbackables } from '../utils'
-import type { Context } from '../types'
+import { resolveCallbackables } from '../utils.ts'
+import type { Context } from '../types.ts'
 
 export async function command(context: Context): Promise<void> {
   const { template, project } = context

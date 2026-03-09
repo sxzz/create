@@ -1,4 +1,4 @@
-import type { TemplateNormalized } from './config'
+import type { TemplateNormalized } from './config.ts'
 import type { Arrayable, Awaitable } from '@antfu/utils'
 
 export interface ProjectInfo {

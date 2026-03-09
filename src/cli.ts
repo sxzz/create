@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import cac from 'cac'
 import consola from 'consola'
-import { version } from '../package.json'
-import { fromTemplate } from './from'
-import { edit, run } from '.'
+import pkg from '../package.json' with { type: 'json' }
+import { fromTemplate } from './from.ts'
+import { edit, run } from './index.ts'
 
 const cli = cac('@sxzz/create')
 
@@ -22,4 +22,4 @@ cli
   .alias('config')
   .action(() => edit().catch((error) => consola.error(error)))
 
-cli.help().version(version).parse()
+cli.help().version(pkg.version).parse()

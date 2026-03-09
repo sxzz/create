@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import ansis from 'ansis'
 import { up } from 'empathic/package'
 import { x } from 'tinyexec'
-import type { Callbackable, Context } from './types'
+import type { Callbackable, Context } from './types.ts'
 
 export const COLORS = [
   'black',

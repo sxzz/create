@@ -9,8 +9,8 @@ import consola from 'consola'
 import { x } from 'tinyexec'
 import { loadConfig } from 'unconfig'
 import { parse, stringify } from 'yaml'
-import { CliError, cmdExists, findConfigTypePath } from './utils'
-import type { Config, ConfigReplace, ConfigTemplate } from './types'
+import { CliError, cmdExists, findConfigTypePath } from './utils.ts'
+import type { Config, ConfigReplace, ConfigTemplate } from './types.ts'
 
 type MergeObject<O, T> = Omit<O, keyof T> & T
 

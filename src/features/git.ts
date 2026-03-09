@@ -1,7 +1,7 @@
 import ansis from 'ansis'
 import consola from 'consola'
 import { x } from 'tinyexec'
-import type { Context } from '../types'
+import type { Context } from '../types.ts'
 
 export async function git({ template, project }: Context): Promise<void> {
   if (template.git.init === false) return
