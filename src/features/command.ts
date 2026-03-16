@@ -1,4 +1,3 @@
-import { tokenizeArgs } from 'args-tokenizer'
 import consola from 'consola'
 import { x } from 'tinyexec'
 import { resolveCallbackables } from '../utils.ts'
@@ -9,8 +8,7 @@ export async function command(context: Context): Promise<void> {
   const commands = await resolveCallbackables(template.commands, context)
   for (const command of commands.flat()) {
     consola.info(`Running command: ${command}`)
-    const [cmd, ...args] = tokenizeArgs(command)
-    const { exitCode } = await x(cmd, args, {
+    const { exitCode } = await x(command, undefined, {
       nodeOptions: {
         stdio: 'inherit',
         cwd: project.path,

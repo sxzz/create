@@ -44,7 +44,6 @@
   "dependencies": {
     "@clack/prompts": "^1.1.0",
     "ansis": "^4.2.0",
-    "args-tokenizer": "^0.3.0",
     "cac": "^7.0.0",
     "consola": "^3.4.2",
     "empathic": "^2.0.0",
