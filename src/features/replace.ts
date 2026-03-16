@@ -2,7 +2,6 @@ import path from 'node:path'
 import { toArray } from '@antfu/utils'
 import ansis from 'ansis'
 import consola from 'consola'
-import escapeStringRegexp from 'escape-string-regexp'
 import { replaceInFile, type ReplaceInFileConfig } from 'replace-in-file'
 import type {
   ConfigReplace,
@@ -33,7 +32,7 @@ async function doReplace(
     let flags = ''
     if (ignoreCase) flags += 'i'
     if (all) flags += 'g'
-    return new RegExp(escapeStringRegexp(from), flags)
+    return new RegExp(RegExp.escape(from), flags)
   }
 
   const from = (
