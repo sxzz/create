@@ -69,7 +69,7 @@
     "replace-in-file": "^8.4.0",
     "tsdown": "^0.22.0",
     "tsdown-preset-sxzz": "^0.6.0",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.0",
     "unplugin-unused": "^0.5.7"
   },
   "prettier": "@sxzz/prettier-config"
