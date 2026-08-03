@@ -35,10 +35,8 @@ export async function variable(context: Context): Promise<void> {
       value = await select({
         message: variable.message,
         initialValue: variable.initial,
-        // initial: variable.initial,
-        options: variable.choices.map(
-          (choice): Choice =>
-            typeof choice === 'string' ? { value: choice } : choice,
+        options: variable.choices.map((choice): Choice =>
+          typeof choice === 'string' ? { value: choice } : choice,
         ),
       })
     }

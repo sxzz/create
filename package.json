@@ -35,6 +35,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
+    "format": "prettier --write .",
     "build": "tsdown",
     "dev": "node ./src/cli.ts",
     "typecheck": "tsgo --noEmit",

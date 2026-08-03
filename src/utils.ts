@@ -90,8 +90,8 @@ export function resolveCallbackables<T>(
 }
 
 export class CliError extends Error {
-  constructor(message: string) {
-    super(message)
+  constructor(message: string, options?: ErrorOptions) {
+    super(message, options)
     this.name = 'CliError'
   }
 }

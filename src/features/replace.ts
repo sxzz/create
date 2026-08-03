@@ -32,6 +32,7 @@ async function doReplace(
     let flags = ''
     if (ignoreCase) flags += 'i'
     if (all) flags += 'g'
+    // eslint-disable-next-line baseline-js/use-baseline
     return new RegExp(RegExp.escape(from), flags)
   }
 
