@@ -36,7 +36,7 @@ export type ConfigReplaceToCallback = (
     match: string
     file: string
   } & Context,
-) => ConfigReplaceTo
+) => string
 
 export interface ConfigReplace {
   include?: Arrayable<string>
