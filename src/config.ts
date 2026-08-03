@@ -7,7 +7,7 @@ import { confirm, isCancel, select } from '@clack/prompts'
 import ansis from 'ansis'
 import consola from 'consola'
 import { x } from 'tinyexec'
-import { loadConfig } from 'unconfig'
+import { createConfigCoreLoader } from 'unconfig-core'
 import { parse, stringify } from 'yaml'
 import { CliError, cmdExists, findConfigTypePath } from './utils.ts'
 import type { Config, ConfigReplace, ConfigTemplate } from './types.ts'
@@ -69,25 +69,31 @@ export async function getConfig({
   config: ConfigNormalized
   file: string
 }> {
-  const { config, sources } = await loadConfig<Config>({
+  const [{ config, source }] = await createConfigCoreLoader<Config>({
     sources: [
-      { files: configPath },
       {
-        files: configPath,
+        files: [configPath],
+        parser(filePath) {
+          return import(filePath).then((mod) => (mod?.default || mod) as Config)
+        },
+      },
+      {
+        files: [configPath],
         extensions: ['yaml', 'yml'],
         async parser(filePath) {
           return parse(await readFile(filePath, 'utf8')) as Config
         },
       },
     ],
-  })
+    multiple: false,
+  }).load()
 
-  if (sources.length > 0) {
+  if (source) {
     return {
       exists: true,
       init: false,
       config: normalizeConfig(config),
-      file: sources[0],
+      file: source,
     }
   }
 

@@ -50,7 +50,7 @@
     "giget": "^3.3.1",
     "tinyexec": "^1.3.0",
     "tinyglobby": "^0.2.17",
-    "unconfig": "^7.5.0",
+    "unconfig-core": "^7.5.0",
     "yaml": "^2.9.0"
   },
   "inlinedDependencies": {
@@ -69,7 +69,7 @@
     "replace-in-file": "^9.0.0",
     "tsdown": "^0.22.14",
     "tsdown-preset-sxzz": "^0.6.0",
-    "typescript": "^7.0.0",
+    "typescript": "~6.0.3",
     "unplugin-unused": "^0.6.0"
   },
   "prettier": "@sxzz/prettier-config"
