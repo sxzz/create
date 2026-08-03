@@ -22,7 +22,7 @@ importers:
         version: 3.4.2
       empathic:
         specifier: ^2.0.0
-        version: 2.0.0
+        version: 2.0.1
       giget:
         specifier: ^3.2.0
         version: 3.2.0
@@ -68,16 +68,16 @@ importers:
         version: 8.4.0
       tsdown:
         specifier: ^0.22.0
-        version: 0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.5.7)
+        version: 0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.6.0(rolldown@1.0.0))
       tsdown-preset-sxzz:
         specifier: ^0.6.0
-        version: 0.6.0(tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.5.7))
+        version: 0.6.0(tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.6.0(rolldown@1.0.0)))
       typescript:
         specifier: ^7.0.0
         version: 7.0.2
       unplugin-unused:
-        specifier: ^0.5.7
-        version: 0.5.7
+        specifier: ^0.6.0
+        version: 0.6.0(rolldown@1.0.0)
 
 packages:
 
@@ -980,8 +980,8 @@ packages:
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
 
-  empathic@2.0.0:
-    resolution: {integrity: sha512-i6UzDscO/XfAcNYD75CfICkmfLedpyPDdozrLMmQc5ORaQcdMoc21OnlEylMIqI7U8eniKrPMxxtj8k0vhmJhA==}
+  empathic@2.0.1:
+    resolution: {integrity: sha512-YGRs8knHhKHVShLkFET/rWAU8kmHbOV5LwN938RHI0pljAJ1Gf6SzXsSmRaEzcXTtOOmVqJ5+WtQPL5uigY50Q==}
     engines: {node: '>=14'}
 
   enhanced-resolve@5.20.0:
@@ -1893,13 +1893,42 @@ packages:
   unist-util-visit@5.1.0:
     resolution: {integrity: sha512-m+vIdyeCOpdr/QeQCu2EzxX/ohgS8KbnPDgFni4dQsfSCtpz8UqDyY5GjRru8PDKuYn7Fq19j1CQ+nJSsGKOzg==}
 
-  unplugin-unused@0.5.7:
-    resolution: {integrity: sha512-quvqrHs6mPhk1hjbGwMoypXfagveue+/22dtgDrEzc2K9485ZAsnVfq7iYIgv7FwooiRa6+HDaLWgK2IavN+2g==}
-    engines: {node: '>=20.19.0'}
+  unplugin-unused@0.6.0:
+    resolution: {integrity: sha512-ov+8yoEs5lyCjK7AqSUmpLuyEhtHwKtNtc1PrpwJVCNQjv+Dins4+7e1+ej57yo8lfiW/zOr9FAEmNmjgU+hFQ==}
+    engines: {node: ^22.18.0 || ^24.11.0 || >=26.0.0}
 
-  unplugin@3.0.0:
-    resolution: {integrity: sha512-0Mqk3AT2TZCXWKdcoaufeXNukv2mTrEZExeXlHIOZXdqYoHHr4n51pymnwV8x2BOVxwXbK2HLlI7usrqMpycdg==}
+  unplugin@3.3.0:
+    resolution: {integrity: sha512-qa66K+crbfyE6JK10GjvbJeRrOsuC/JpbnHctfyp/i4oBTxWOzJfRZyDiOk1PtErMFRu8JhsU/wPvOdBNWe5Rg==}
     engines: {node: ^20.19.0 || >=22.12.0}
+    peerDependencies:
+      '@farmfe/core': '*'
+      '@rspack/core': '*'
+      bun-types-no-globals: '*'
+      esbuild: '*'
+      rolldown: '*'
+      rollup: '*'
+      unloader: '*'
+      vite: '*'
+      webpack: '*'
+    peerDependenciesMeta:
+      '@farmfe/core':
+        optional: true
+      '@rspack/core':
+        optional: true
+      bun-types-no-globals:
+        optional: true
+      esbuild:
+        optional: true
+      rolldown:
+        optional: true
+      rollup:
+        optional: true
+      unloader:
+        optional: true
+      vite:
+        optional: true
+      webpack:
+        optional: true
 
   update-browserslist-db@1.2.3:
     resolution: {integrity: sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==}
@@ -2775,7 +2804,7 @@ snapshots:
 
   emoji-regex@10.6.0: {}
 
-  empathic@2.0.0: {}
+  empathic@2.0.1: {}
 
   enhanced-resolve@5.20.0:
     dependencies:
@@ -2915,7 +2944,7 @@ snapshots:
 
   eslint-plugin-pnpm@1.6.0(eslint@10.2.0(jiti@2.6.1)):
     dependencies:
-      empathic: 2.0.0
+      empathic: 2.0.1
       eslint: 10.2.0(jiti@2.6.1)
       jsonc-eslint-parser: 3.1.0
       pathe: 2.0.3
@@ -3816,18 +3845,18 @@ snapshots:
       picomatch: 4.0.4
       typescript: 7.0.2
 
-  tsdown-preset-sxzz@0.6.0(tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.5.7)):
+  tsdown-preset-sxzz@0.6.0(tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.6.0(rolldown@1.0.0))):
     dependencies:
       '@arethetypeswrong/core': 0.18.2
       publint: 0.3.20
-      tsdown: 0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.5.7)
+      tsdown: 0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.6.0(rolldown@1.0.0))
 
-  tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.5.7):
+  tsdown@0.22.0(@arethetypeswrong/core@0.18.2)(@typescript/native-preview@7.0.0-dev.20260707.2)(publint@0.3.20)(typescript@7.0.2)(unplugin-unused@0.6.0(rolldown@1.0.0)):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
       defu: 6.1.7
-      empathic: 2.0.0
+      empathic: 2.0.1
       hookable: 6.1.1
       import-without-cache: 0.4.0
       obug: 2.1.1
@@ -3843,7 +3872,7 @@ snapshots:
       '@arethetypeswrong/core': 0.18.2
       publint: 0.3.20
       typescript: 7.0.2
-      unplugin-unused: 0.5.7
+      unplugin-unused: 0.6.0(rolldown@1.0.0)
     transitivePeerDependencies:
       - '@ts-macro/tsc'
       - '@typescript/native-preview'
@@ -3932,18 +3961,30 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  unplugin-unused@0.5.7:
+  unplugin-unused@0.6.0(rolldown@1.0.0):
     dependencies:
-      empathic: 2.0.0
+      empathic: 2.0.1
       escape-string-regexp: 5.0.0
       js-tokens: 10.0.0
-      unplugin: 3.0.0
+      unplugin: 3.3.0(rolldown@1.0.0)
+    transitivePeerDependencies:
+      - '@farmfe/core'
+      - '@rspack/core'
+      - bun-types-no-globals
+      - esbuild
+      - rolldown
+      - rollup
+      - unloader
+      - vite
+      - webpack
 
-  unplugin@3.0.0:
+  unplugin@3.3.0(rolldown@1.0.0):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       picomatch: 4.0.4
       webpack-virtual-modules: 0.6.2
+    optionalDependencies:
+      rolldown: 1.0.0
 
   update-browserslist-db@1.2.3(browserslist@4.28.1):
     dependencies:
