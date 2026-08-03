@@ -2,7 +2,7 @@
   "name": "@sxzz/create",
   "type": "module",
   "version": "0.16.0",
-  "packageManager": "pnpm@11.17.0",
+  "packageManager": "pnpm@11.18.0",
   "description": "Command-line for creating projects from templates.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -70,7 +70,7 @@
     "tsdown": "^0.22.0",
     "tsdown-preset-sxzz": "^0.6.0",
     "typescript": "^7.0.0",
-    "unplugin-unused": "^0.5.7"
+    "unplugin-unused": "^0.6.0"
   },
   "prettier": "@sxzz/prettier-config"
 }
