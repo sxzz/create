@@ -69,12 +69,16 @@ export async function getConfig({
   config: ConfigNormalized
   file: string
 }> {
-  const [{ config, source }] = await createConfigCoreLoader<Config>({
+  const configs = await createConfigCoreLoader<Config>({
     sources: [
       {
         files: [configPath],
+        extensions: ['mts', 'cts', 'ts', 'mjs', 'cjs', 'js', 'json'],
         parser(filePath) {
-          return import(filePath).then((mod) => (mod?.default || mod) as Config)
+          return import(
+            filePath,
+            filePath.endsWith('.json') ? { with: { type: 'json' } } : undefined
+          ).then((mod) => (mod?.default || mod) as Config)
         },
       },
       {
@@ -88,12 +92,12 @@ export async function getConfig({
     multiple: false,
   }).load()
 
-  if (source) {
+  if (configs.length) {
     return {
       exists: true,
       init: false,
-      config: normalizeConfig(config),
-      file: source,
+      config: normalizeConfig(configs[0].config),
+      file: configs[0].source,
     }
   }
 
