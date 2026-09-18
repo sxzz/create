@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/sxzz/create/issues"
   },
+  "sideEffects": [
+    "./dist/cli.mjs"
+  ],
   "exports": {
     ".": "./dist/index.mjs",
     "./cli": "./dist/cli.mjs",
