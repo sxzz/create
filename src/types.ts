@@ -1,5 +1,6 @@
 import type { TemplateNormalized } from './config.ts'
 import type { Arrayable, Awaitable } from '@antfu/utils'
+import type { DownloadTemplateOptions } from 'giget'
 
 export interface ProjectInfo {
   url: string
@@ -76,6 +77,7 @@ export interface ConfigTemplate {
    * See also https://github.com/unjs/giget#downloadtemplatesource-options
    */
   url?: string
+  giget?: DownloadTemplateOptions
 
   git?: {
     /** @default true */

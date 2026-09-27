@@ -134,6 +134,7 @@ async function create({
   await downloadTemplate(url, {
     provider: 'github',
     dir: projectPath,
+    ...template.giget,
   })
 
   await git(ctx)
