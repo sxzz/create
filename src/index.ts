@@ -1,7 +1,13 @@
 import path from 'node:path'
 import process from 'node:process'
 import { objectKeys, objectPick } from '@antfu/utils'
-import { intro, isCancel, select, text } from '@clack/prompts'
+import {
+  intro,
+  isCancel,
+  select,
+  text,
+  type CANCEL_SYMBOL,
+} from '@clack/prompts'
 import ansis from 'ansis'
 import consola from 'consola'
 import { downloadTemplate } from 'giget'
@@ -101,7 +107,7 @@ async function create({
   template: TemplateNormalized
   projectPath?: string
 }) {
-  let relativePath: string | symbol | undefined = _relativePath
+  let relativePath: string | typeof CANCEL_SYMBOL | undefined = _relativePath
   if (!relativePath) {
     relativePath = await text({
       message: 'Folder name of the project',

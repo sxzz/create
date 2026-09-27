@@ -2,7 +2,6 @@
   "name": "@sxzz/create",
   "type": "module",
   "version": "0.17.1",
-  "packageManager": "pnpm@12.5.1",
   "description": "Command-line for creating projects from templates.",
   "author": "Kevin Deng <sxzz@sxzz.moe>",
   "license": "MIT",
@@ -35,27 +34,34 @@
   "engines": {
     "node": ">=24.11.0"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.6.0",
+      "onFail": "download"
+    }
+  },
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
     "format": "prettier --write .",
     "build": "tsdown",
     "dev": "node ./src/cli.ts",
-    "typecheck": "tsgo --noEmit",
+    "typecheck": "tsc --noEmit",
     "release": "bumpp",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@clack/prompts": "^1.7.0",
-    "ansis": "^4.3.1",
+    "@clack/prompts": "^1.8.1",
+    "ansis": "^4.4.0",
     "cac": "^7.0.0",
     "consola": "^3.4.2",
-    "empathic": "^2.0.1",
+    "empathic": "^2.1.0",
     "giget": "^3.3.1",
-    "tinyexec": "^1.3.0",
+    "tinyexec": "^1.3.1",
     "tinyglobby": "^0.2.17",
     "unconfig-core": "^7.5.0",
-    "yaml": "^2.9.0"
+    "yaml": "^2.9.1"
   },
   "inlinedDependencies": {
     "@antfu/utils": "9.3.0",
@@ -63,16 +69,16 @@
   },
   "devDependencies": {
     "@antfu/utils": "^9.3.0",
-    "@sxzz/eslint-config": "^8.5.0",
-    "@sxzz/prettier-config": "^2.3.2",
-    "@types/node": "^26.2.0",
-    "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "bumpp": "^12.2.1",
-    "eslint": "^10.8.1",
-    "prettier": "^3.9.6",
+    "@sxzz/eslint-config": "^8.6.0",
+    "@sxzz/prettier-config": "^2.3.3",
+    "@types/node": "^26.6.3",
+    "@typescript/native-preview": "npm:typescript@~7.0.2",
+    "bumpp": "^12.3.0",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9",
     "replace-in-file": "^9.0.0",
     "tsdown": "^0.23.0",
-    "tsdown-preset-sxzz": "^0.7.0",
+    "tsdown-preset-sxzz": "^0.7.1",
     "typescript": "~6.0.3",
     "unplugin-unused": "^0.6.0"
   },
